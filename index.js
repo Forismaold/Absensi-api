@@ -9,6 +9,7 @@ const port = process.env.PORT || 3001
 app.get('/new', async (req, res) => {
     const data = new User({
         "NIS": 123426,
+        "avatar": "https://th.bing.com/th/id/OIP.ZvirSVF47jPTxgL0yJ6pyAAAAA?pid=ImgDet&rs=1",
         "nama": "Saha",
         "nama_panggilan": "Eta",
         "password": "adipass123",
@@ -26,7 +27,7 @@ app.get('/new', async (req, res) => {
 })
 
 app.use((req, res) => {
-    res.send('Hello, kami belum selesai membuat backend!')
+    res.send('404, kami belum selesai membuat backend!')
 })
 
 connectDB().then(() => {
