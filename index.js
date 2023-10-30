@@ -1,7 +1,7 @@
 // import
 import express from 'express'
 import { connectDB } from './src/database/connectDB.js'
-import User from './src/schema/user.js'
+import User from './src/schema/User.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
