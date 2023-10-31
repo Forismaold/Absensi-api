@@ -1,10 +1,25 @@
 // import
 import express from 'express'
 import { connectDB } from './src/database/connectDB.js'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+
 import User from './src/schema/User.js'
+import akun from './src/akun.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
+
+// middleware
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://absensiswa.netlify.app'],
+    methods: 'GET,PUT,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+}))
+app.use(bodyParser.json())
+
+app.use('/akun', akun)
 
 app.get('/new', async (req, res) => {
     const data = new User({
@@ -25,6 +40,23 @@ app.get('/new', async (req, res) => {
         res.json(data)
     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.use((req, res) => {
     res.send('404, kami belum selesai membuat backend!')

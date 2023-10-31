@@ -25,13 +25,13 @@ const userSchema = mongoose.Schema({
     type: String,
     default: '-'
   },
-  jenis_kelamin: {
+  jenisKelamin: {
     type: String,
     enum: ['L', 'P', '-'],
     required: true,
     default: '-'
   },
-  nomor_absen: {
+  nomorAbsen: {
     type: Number,
     required: true,
     default: '-'
