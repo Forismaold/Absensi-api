@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const userSchema = mongoose.Schema({
   NIS: {
     type: Number,
-    required: true,
+    default: null
   },
   avatar: {
     type: String,
@@ -17,10 +17,6 @@ const userSchema = mongoose.Schema({
     type: String,
     default: '-'
   },
-  password: {
-    type: String,
-    default: null
-  },
   email: {
     type: String,
     default: '-'
@@ -28,7 +24,6 @@ const userSchema = mongoose.Schema({
   jenisKelamin: {
     type: String,
     enum: ['L', 'P', '-'],
-    required: true,
     default: '-'
   },
   nomorAbsen: {
@@ -41,9 +36,14 @@ const userSchema = mongoose.Schema({
     required: true,
     default: '-'
   },
+  nomorKelas: {
+    type: String,
+    required: true,
+    default: '-'
+  },
   agama: {
     type: String,
-    default: 'Tidak diketahui'
+    default: 'Islam'
   },
   peran: {
     type: [String],
@@ -53,7 +53,15 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+  hash: {
+    type: String,
+    default: ''
+  },
   lainnya: Object
+})
+
+userSchema.virtual('kelasLengkap').get(function() {
+  return this.kelas + '-' + this.nomorKelas
 })
 
 const User = mongoose.model('User', userSchema)

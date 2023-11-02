@@ -6,6 +6,7 @@ import cors from 'cors'
 
 import User from './src/schema/User.js'
 import akun from './src/akun.js'
+import users from './src/users.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
@@ -20,6 +21,8 @@ app.use(cors({
 app.use(bodyParser.json())
 
 app.use('/akun', akun)
+
+app.use('/users', users)
 
 app.get('/new', async (req, res) => {
     const data = new User({
