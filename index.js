@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001
 
 // middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://absensiswa.netlify.app'],
+    origin: '*',
     methods: 'GET,PUT,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
