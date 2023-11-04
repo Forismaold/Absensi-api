@@ -36,11 +36,9 @@ route.post('/login/form', async (req, res) => {
     
         bcrypt.compare(password, user.hash, (err, result) => {
             if (result) {
-                const sendUser = user
-                sendUser.delete
                 res.json({user: encryptObject(user), message: 'Login successful' });
             } else {
-                res.status(401).json({ message: 'Password salah' });
+                res.status(401).json({ message: 'Password salah!' });
             }
         })
     
@@ -48,6 +46,12 @@ route.post('/login/form', async (req, res) => {
         res.status(500).json({ message: 'Internal Server Error' });
       }
     
+})
+
+route.post('/bind/google', async (req, res) => {
+    const {picture, email} = jwtDecode(req.body.credential)
+    const user = await User.findByIdAndUpdate(req.body._id, {$set: {email, avatar: picture}}, {new: true})
+    res.json({user: encryptObject(user), msg: 'ok'})
 })
 
 export default route
