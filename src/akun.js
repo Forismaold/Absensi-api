@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import User from './schema/User.js';
 import bcrypt from 'bcrypt'
 import { encryptObject } from './utils.js';
+
 const route = express.Router()
 
 route.post('/daftar', async (req, res) => {
@@ -45,7 +46,19 @@ route.post('/login/form', async (req, res) => {
       } catch (error) {
         res.status(500).json({ message: 'Internal Server Error' });
       }
-    
+})
+route.post('/login/google', async (req, res) => {
+    const {picture, email} = jwtDecode(req.body.credential)
+    const user = await User.findOne({email: email})
+
+    if (!user) return res.status(401).json({ message: `Tidak ditemukan akun dengan email yang sama`});
+
+    if (user.avatar !== picture) {
+        user.avatar = picture
+        await user.save()
+    }
+
+    res.json({user: encryptObject(user), msg: 'ok'})
 })
 
 route.post('/bind/google', async (req, res) => {

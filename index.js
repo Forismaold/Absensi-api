@@ -12,13 +12,16 @@ const app = express()
 const port = process.env.PORT || 3001
 
 // middleware
-app.use(cors())
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    next()
-})
+app.use('*', cors({
+    origin: process.env.NODE_ENV === 'development' ? ['http://localhost:3000'] : ['https://absensiswa.netlify.app'],
+    methods: 'GET,PUT,POST,DELETE',
+}))
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+//     next()
+// })
 app.use(bodyParser.json())
 
 app.use('/akun', akun)
@@ -43,6 +46,10 @@ app.get('/new', async (req, res) => {
     data.save().then(data => {
         res.json(data)
     })
+})
+
+app.post('/test', (req, res) => {
+    res.json({text: 'Hola ' + req.body.text})
 })
 
 
