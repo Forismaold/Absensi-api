@@ -57,6 +57,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  kode: {
+    type: String,
+    enum: ['I', 'S', 'A', 'H', '-'],
+    default: ''
+  },
+  keterangan: {
+    type: String,
+    default: '',
+  },
   lainnya: Object
 })
 

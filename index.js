@@ -7,6 +7,7 @@ import cors from 'cors'
 import User from './src/schema/User.js'
 import akun from './src/akun.js'
 import users from './src/users.js'
+import absen from './src/absen.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
@@ -22,6 +23,8 @@ app.use(bodyParser.json())
 app.use('/akun', akun)
 
 app.use('/users', users)
+
+app.use('/absen', absen)
 
 app.get('/new', async (req, res) => {
     const data = new User({
@@ -43,6 +46,9 @@ app.get('/new', async (req, res) => {
     })
 })
 
+app.get('/test', (req, res) => {
+    
+})
 app.post('/test', (req, res) => {
     res.json({text: 'Hola ' + req.body.text})
 })
