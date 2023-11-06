@@ -53,7 +53,12 @@ app.post('/test', (req, res) => {
     res.json({text: 'Hola ' + req.body.text})
 })
 
+app.get('/getTime', (req, res) => {
+    const waktuServerUTC = new Date();
+    const waktuWIB = waktuServerUTC.toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
 
+    res.json({waktuServerUTC, waktuWIB})
+})
 
 
 

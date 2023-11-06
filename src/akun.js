@@ -8,7 +8,7 @@ const route = express.Router()
 
 route.post('/daftar', async (req, res) => {
     const dataUser = req.body
-    //try {
+    try {
         const exitingUser = await User.findOne({nama: req.body.nama})
         if (exitingUser) return res.status(409).json({ message: `Pengguna dengan nama "${dataUser.nama}" sudah ada` })
 
@@ -22,9 +22,9 @@ route.post('/daftar', async (req, res) => {
         }).catch(err => {
             throw new Error(err)
         })
-    //} catch (error) {
-        //res.status(500).json({ message: 'Internal Server Error' })
-    //}
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' })
+    }
 })
 
 route.post('/login/form', async (req, res) => {
