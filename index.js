@@ -56,7 +56,7 @@ app.post('/test', (req, res) => {
 
 app.get('/getTime', (req, res) => {
     const waktuServerUTC = new Date();
-    const waktuWIB = moment(waktuServerUTC).tz('Asia/Jakarta')//.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+    const waktuWIB = moment(waktuServerUTC).tz('Asia/Jakarta').format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 
     res.json({waktuServerUTC, waktuWIB})
 })
