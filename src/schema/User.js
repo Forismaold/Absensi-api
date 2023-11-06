@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema({
   kode: {
     type: String,
     enum: ['I', 'S', 'A', 'H', '-'],
-    default: ''
+    default: '-'
   },
   keterangan: {
     type: String,
