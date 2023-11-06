@@ -8,6 +8,7 @@ import User from './src/schema/User.js'
 import akun from './src/akun.js'
 import users from './src/users.js'
 import absen from './src/absen.js'
+import moment from 'moment-timezone'
 // config
 const app = express()
 const port = process.env.PORT || 3001
@@ -55,7 +56,7 @@ app.post('/test', (req, res) => {
 
 app.get('/getTime', (req, res) => {
     const waktuServerUTC = new Date();
-    const waktuWIB = waktuServerUTC.toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+    const waktuWIB = moment(waktuServerUTC).tz('Asia/Jakarta')//.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 
     res.json({waktuServerUTC, waktuWIB})
 })
