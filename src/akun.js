@@ -67,4 +67,5 @@ route.post('/bind/google', async (req, res) => {
     res.json({user: encryptObject(user), msg: 'ok'})
 })
 
+
 export default route

@@ -66,6 +66,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: '',
   },
+  waktuAbsen: {
+    type: Date,
+    default: new Date(),
+  },
   lainnya: Object
 })
 
