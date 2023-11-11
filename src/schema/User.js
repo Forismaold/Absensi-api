@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    default: '-'
+    default: ''
   },
   jenisKelamin: {
     type: String,
@@ -51,7 +51,7 @@ const userSchema = new mongoose.Schema({
   },
   absen: {
     type: Boolean,
-    default: false
+    default: null
   },
   hash: {
     type: String,

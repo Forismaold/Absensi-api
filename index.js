@@ -9,6 +9,7 @@ import akun from './src/akun.js'
 import users from './src/users.js'
 import absen from './src/absen.js'
 import moment from 'moment-timezone'
+import riwayats from './src/riwayat.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
@@ -26,6 +27,8 @@ app.use('/akun', akun)
 app.use('/users', users)
 
 app.use('/absen', absen)
+
+app.use('/riwayats', riwayats)
 
 app.get('/new', async (req, res) => {
     const data = new User({
@@ -60,9 +63,6 @@ app.get('/getTime', (req, res) => {
 
     res.json({waktuServerUTC, waktuWIB})
 })
-
-
-
 
 
 

@@ -10,7 +10,7 @@ route.post('/daftar', async (req, res) => {
     const dataUser = req.body
     try {
         const exitingUser = await User.findOne({nama: req.body.nama})
-        if (exitingUser) return res.status(409).json({ message: `Pengguna dengan nama "${dataUser.nama}" sudah ada` })
+        if (exitingUser) return res.status(409).json({ msg: `Pengguna dengan nama "${dataUser.nama}" sudah ada` })
 
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         dataUser.hash = hashedPassword
@@ -18,12 +18,12 @@ route.post('/daftar', async (req, res) => {
         const user = new User(dataUser)
 
         await user.save().then(data => {
-            res.status(201).json({ user: encryptObject(data), message: 'User berhasil daftar' })
+            res.status(201).json({ user: encryptObject(data), msg: 'User berhasil daftar' })
         }).catch(err => {
             throw new Error(err)
         })
     } catch (error) {
-        res.status(500).json({ message: 'Internal Server Error' })
+        res.status(500).json({ msg: 'Internal Server Error' })
     }
 })
 
@@ -32,26 +32,26 @@ route.post('/login/form', async (req, res) => {
     try {
         const user = await User.findOne({ nama })
         if (!user) {
-          return res.status(401).json({ message: `Tidak ada pengguna dengan nama "${nama}"`});
+          return res.status(401).json({ msg: `Tidak ada pengguna dengan nama "${nama}"`});
         }
     
         bcrypt.compare(password, user.hash, (err, result) => {
             if (result) {
-                res.json({user: encryptObject(user), message: 'Login successful' });
+                res.json({user: encryptObject(user), msg: 'Login successful' });
             } else {
-                res.status(401).json({ message: 'Password salah!' });
+                res.status(401).json({ msg: 'Password salah!' });
             }
         })
     
       } catch (error) {
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ msg: 'Internal Server Error' });
       }
 })
 route.post('/login/google', async (req, res) => {
     const {picture, email} = jwtDecode(req.body.credential)
     const user = await User.findOne({email: email})
 
-    if (!user) return res.status(401).json({ message: `Tidak ditemukan akun dengan email yang sama`});
+    if (!user) return res.status(401).json({ msg: `Tidak ditemukan akun dengan email yang sama`});
 
     if (user.avatar !== picture) {
         user.avatar = picture

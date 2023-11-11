@@ -2,12 +2,12 @@ import CryptoJS from "crypto-js"
 export function encryptObject(object) {
     const jsonString = JSON.stringify(object)
 
-    const encryptedMessage = CryptoJS.AES.encrypt(jsonString, process.env.CRYPTO_KEY).toString()
-    return encryptedMessage
+    const encryptedmsg = CryptoJS.AES.encrypt(jsonString, process.env.CRYPTO_KEY).toString()
+    return encryptedmsg
 }
 
-export function dencryptObject(encryptedMessage) {
-    const decryptedBytes = CryptoJS.AES.decrypt(encryptedMessage, process.env.CRYPTO_KEY)
+export function dencryptObject(encryptedmsg) {
+    const decryptedBytes = CryptoJS.AES.decrypt(encryptedmsg, process.env.CRYPTO_KEY)
     const decryptedJsonString = decryptedBytes.toString(CryptoJS.enc.Utf8)
 
     const decryptedObject = JSON.parse(decryptedJsonString)
