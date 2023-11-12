@@ -10,6 +10,8 @@ import users from './src/users.js'
 import absen from './src/absen.js'
 import moment from 'moment-timezone'
 import riwayats from './src/riwayat.js'
+import absensi from './src/absensi.js'
+
 // config
 const app = express()
 const port = process.env.PORT || 3001
@@ -27,6 +29,8 @@ app.use('/akun', akun)
 app.use('/users', users)
 
 app.use('/absen', absen)
+
+app.use('/absensi', absensi)
 
 app.use('/riwayats', riwayats)
 

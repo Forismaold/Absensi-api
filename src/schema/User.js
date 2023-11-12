@@ -70,6 +70,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  coordinates: {
+    type: [Number],
+    default: [0, 0],
+  },
   lainnya: Object
 })
 
