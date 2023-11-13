@@ -13,7 +13,7 @@ route.post('/tidakHadir', async (req, res) => {
                 keterangan: req.body.keterangan,
                 waktuAbsen: new Date(),
                 absen: false,
-                coordinates: req.body.userCoordinate
+                koordinat: req.body.userCoordinate
             }
         }, {new: true})
         if (user) {
@@ -34,7 +34,7 @@ route.post('/hadir', async (req, res) => {
                 keterangan: null, 
                 waktuAbsen: new Date(), 
                 kode: '-',
-                coordinates: req.body.userCoordinate
+                koordinat: req.body.userCoordinate
             }
         }, {new: true})
         if (user) {

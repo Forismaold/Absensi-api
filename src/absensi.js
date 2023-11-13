@@ -21,7 +21,7 @@ route.get('/status', async (req, res) => {
 })
 route.post('/buka', async (req, res) => {
     try {
-        const users = await User.updateMany({}, {$set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', coordinates: [0, 0]}})
+        const users = await User.updateMany({}, {$set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]}})
 
         const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: false }, {
             $set: {
@@ -63,7 +63,7 @@ route.post('/tutup', async (req, res) => {
             }
         })
 
-        const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama}))
+        const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, koordinat: user.koordinat}))
 
         const history = new Riwayat({
             users: userAbsence,
@@ -72,7 +72,7 @@ route.post('/tutup', async (req, res) => {
 
         await history.save()
         
-        await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', coordinates: [0, 0]} })
+        await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
 
         res.status(200).json(report)
     } catch (error) {

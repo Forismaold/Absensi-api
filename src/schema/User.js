@@ -70,7 +70,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: new Date(),
   },
-  coordinates: {
+  koordinat: {
     type: [Number],
     default: [0, 0],
   },

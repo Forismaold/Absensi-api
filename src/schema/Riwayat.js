@@ -20,6 +20,10 @@ const riwayatSchema = new mongoose.Schema({
                 type: Date,
                 default: new Date(),
             },
+            koordinat: {
+                type: [Number],
+                default: [0, 0],
+            },
             _id: mongoose.Schema.Types.ObjectId,
             nama: {type: String, default: 'Anon'}
         }],
