@@ -2,6 +2,16 @@ import express from 'express'
 import Riwayat from './schema/Riwayat.js'
 const route = express.Router()
 
+route.get('/all', async (req, res) => {
+    try {
+        const riwayats = await Riwayat.find({})
+        res.json({riwayats})
+    } catch (error) {
+        console.log(error)
+        res.json({msg: 'internal server error'})
+    }
+})
+
 route.get('/:userId', async (req, res) => {
     try {
         const riwayats = await Riwayat.find({})
