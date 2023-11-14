@@ -81,5 +81,34 @@ route.post('/tutup', async (req, res) => {
     }
 })
 
+route.post('/buang', async (req, res) => {
+    try {
+        const users = await User.find({})
+        
+        const report = {
+            msg: 'Data absensi dibuang',
+            tidak: users.filter(x => x.absen === false).length,
+            belum: users.filter(x => x.absen === null).length,
+            sudah: users.filter(x => x.absen === true).length
+        }
+
+        const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: true }, {
+            $set: {
+                openedBy: null,
+                status: false,
+                date: null,
+                title: null
+            }
+        })
+        
+        await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
+
+        res.status(200).json(report)
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg: 'Internal server error'})   
+    }
+})
+
 
 export default route
