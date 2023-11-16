@@ -29,17 +29,17 @@ const userSchema = new mongoose.Schema({
   nomorAbsen: {
     type: Number,
     required: true,
-    default: '-'
+    default: ''
   },
   kelas: {
     type: String,
     required: true,
-    default: '-'
+    default: ''
   },
   nomorKelas: {
     type: String,
     required: true,
-    default: '-'
+    default: ''
   },
   agama: {
     type: String,

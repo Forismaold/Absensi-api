@@ -25,7 +25,9 @@ const riwayatSchema = new mongoose.Schema({
                 default: [0, 0],
             },
             _id: mongoose.Schema.Types.ObjectId,
-            nama: {type: String, default: 'Anon'}
+            nama: {type: String, default: 'Anon'},
+            kelas: {type: String, default: ''},
+            nomorKelas: {type: String, default: ''}
         }],
         default: []
     },
