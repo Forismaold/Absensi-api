@@ -34,40 +34,6 @@ app.use('/absensi', absensi)
 
 app.use('/riwayats', riwayats)
 
-app.get('/new', async (req, res) => {
-    const data = new User({
-        "NIS": 123426,
-        "avatar": "https://th.bing.com/th/id/OIP.ZvirSVF47jPTxgL0yJ6pyAAAAA?pid=ImgDet&rs=1",
-        "nama": "Saha",
-        "nama_panggilan": "Eta",
-        "password": "adipass123",
-        "email": "adi.susanto@example.com",
-        "jenis_kelamin": "L",
-        "nomor_absen": 1,
-        "kelas": "XI IPS 2",
-        "agama": "Islam",
-        "peran": ["siswa"],
-        "absen": false
-    })
-    data.save().then(data => {
-        res.json(data)
-    })
-})
-
-app.get('/test', (req, res) => {
-    
-})
-app.post('/test', (req, res) => {
-    res.json({text: 'Hola ' + req.body.text})
-})
-
-app.get('/getTime', (req, res) => {
-    const waktuServerUTC = new Date();
-    const waktuWIB = moment(waktuServerUTC).tz('Asia/Jakarta').format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-
-    res.json({waktuServerUTC, waktuWIB})
-})
-
 
 
 
