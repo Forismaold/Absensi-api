@@ -25,6 +25,7 @@ route.post('/buka', async (req, res) => {
 
         const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: false }, {
             $set: {
+                note: req.body.note || '',
                 title: req.body.title || 'Dzuhur',
                 openedBy: req.body.openedBy,
                 status: true,
@@ -59,7 +60,8 @@ route.post('/tutup', async (req, res) => {
                 openedBy: null,
                 status: false,
                 date: null,
-                title: null
+                title: null,
+                note: null
             }
         })
 

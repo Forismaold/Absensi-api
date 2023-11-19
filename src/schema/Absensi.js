@@ -16,6 +16,10 @@ const absensiSchema = new mongoose.Schema({
     openedBy: {
         type: String,
         default: 'Anon'
+    },
+    note: {
+        type: String,
+        default: ''
     }
 })
 
