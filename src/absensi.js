@@ -99,7 +99,8 @@ route.post('/buang', async (req, res) => {
                 openedBy: null,
                 status: false,
                 date: null,
-                title: null
+                title: null,
+                note: null
             }
         })
         
