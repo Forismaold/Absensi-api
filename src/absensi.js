@@ -59,7 +59,7 @@ route.post('/tutup', async (req, res) => {
             $set: {
                 openedBy: null,
                 status: false,
-                date: null,
+                date: Date.now(),
                 title: null,
                 note: null
             }
@@ -98,7 +98,7 @@ route.post('/buang', async (req, res) => {
             $set: {
                 openedBy: null,
                 status: false,
-                date: null,
+                date: Date.now(),
                 title: null,
                 note: null
             }
