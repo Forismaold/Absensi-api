@@ -52,7 +52,7 @@ route.get('/status/:userId', async (req, res) => {
         const absensi = await Absensi.findById(process.env.ABSENSI_ID)
         const user = await User.findById(req.params.userId)
         if (!user) return res.status(404).json({msg: 'User tidak ditemukan'})
-        res.json({status: getUserStatus(user), absensi})
+        res.json({status: {...getUserStatus(user), koordinat: user.koordinat}, absensi})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Intermal server error'})
