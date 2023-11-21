@@ -63,7 +63,7 @@ route.post('/tutup', async (req, res) => {
                 title: null,
                 note: null
             }
-        })
+        }, {new: true})
 
         const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, koordinat: user.koordinat, kelas: user.kelas, nomorKelas: user.nomorKelas}))
 
@@ -76,7 +76,7 @@ route.post('/tutup', async (req, res) => {
         
         await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
 
-        res.status(200).json(report)
+        res.status(200).json({...report, absensi})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Internal server error'})   
@@ -102,11 +102,11 @@ route.post('/buang', async (req, res) => {
                 title: null,
                 note: null
             }
-        })
+        }, {new: true})
         
         await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
 
-        res.status(200).json(report)
+        res.status(200).json({...report, absensi})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Internal server error'})   
