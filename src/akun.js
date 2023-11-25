@@ -23,7 +23,7 @@ route.post('/daftar', async (req, res) => {
             throw new Error(err)
         })
     } catch (error) {
-        res.status(500).json({ msg: 'Internal Server Error' })
+        res.status(500).json({ msg: 'Internal server error' })
     }
 })
 
@@ -44,7 +44,7 @@ route.post('/login/form', async (req, res) => {
         })
     
       } catch (error) {
-        res.status(500).json({ msg: 'Internal Server Error' });
+        res.status(500).json({ msg: 'Internal server error' });
       }
 })
 route.post('/login/google', async (req, res) => {

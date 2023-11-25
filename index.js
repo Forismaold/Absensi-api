@@ -47,7 +47,7 @@ app.use('/riwayats', riwayats)
 
 
 app.use((req, res) => {
-    res.send('404, kami belum selesai membuat backend!')
+    res.status(404).send('404, kami belum selesai membuat backend!')
 })
 
 connectDB().then(() => {
