@@ -50,12 +50,15 @@ route.post('/hadir', async (req, res) => {
 route.get('/status/:userId', async (req, res) => {
     try {
         const absensi = await Absensi.findById(process.env.ABSENSI_ID)
-        const user = await User.findById(req.params.userId)
-        if (!user) return res.status(404).json({msg: 'User tidak ditemukan'})
-        res.json({status: {...getUserStatus(user), koordinat: user.koordinat}, absensi})
+        const userId = req.params.userId
+
+        if (userId === 'undefined') return res.json({ absensi })
+
+        const user = await User.findById(userId)
+        res.json({ status: { ...getUserStatus(user) }, absensi })
     } catch (error) {
-        console.log(error);
-        res.status(500).json({msg: 'Intermal server error'})
+        console.log(error)
+        res.status(500).json({ msg: 'Internal server error' })
     }
 })
 

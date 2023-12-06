@@ -65,7 +65,7 @@ route.post('/tutup', async (req, res) => {
             }
         }, {new: true})
 
-        const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, koordinat: user.koordinat, kelas: user.kelas, nomorKelas: user.nomorKelas}))
+        const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, kelas: user.kelas, nomorKelas: user.nomorKelas}))
 
         const history = new Riwayat({
             users: userAbsence,

@@ -15,6 +15,6 @@ export function dencryptObject(encryptedmsg) {
     return decryptedObject
 }
 
-export const getUserStatus = (user) => {
-    return { kode: user.kode, keterangan: user.keterangan, waktuAbsen: user.waktuAbsen, absen: user.absen };
+export const getUserStatus = (user = {}) => {
+    return { kode: user.kode, keterangan: user.keterangan, waktuAbsen: user.waktuAbsen, absen: user.absen, koordinat: user?.koordinat || [0, 0] };
 }
