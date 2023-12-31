@@ -5,9 +5,75 @@ import Absensi from './schema/Absensi.js'
 import { getUserStatus } from './utils.js'
 const route = express.Router()
 
-route.get('/status', async (req, res) => {
+route.get('/', async (req, res) => {
     try {
-        const absensi = await Absensi.findById(process.env.ABSENSI_ID)
+        const data = await Absensi.find().select()
+        if (data) {
+            res.status(200).json({data})
+        } else {
+            res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
+
+route.post('/', async (req, res) => {
+    try {
+        const absensi = new Absensi(req.body)
+        await absensi.save().then(async (absensi) => {
+            const data = await Absensi.find()
+            if (data) {
+                res.status(200).json({data})
+            } else {
+                res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+            }
+        })
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
+
+route.put('/:id', async (req, res) => {
+    try {
+        const absensi = await Absensi.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                openedBy: req.body.openedBy,
+                date: Date.now(),
+                title: req.body.title,
+                note: req.body.note
+            }
+        }, {new: true})
+
+        if (absensi) {
+            res.status(200).json({msg: 'Absensi diperbarui', absensi })
+        } else {
+            res.status(404).json({ msg: 'Absensi tidak ditemukan' });
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg: 'Internal server error'})   
+    }
+})
+
+route.get('/detail/:id', async (req, res) => {
+    try {
+        const data = await Absensi.findById(req.params.id)
+
+        if (data) {
+            res.status(200).json({data})
+        } else {
+            res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+        }
+    } catch (error) {
+        res.status(500).json({msg: 'Internal server error'})
+    }
+})
+
+route.get('/status/:id', async (req, res) => {
+    try {
+        const absensi = await Absensi.findById(req.params.id)
 
         if (absensi) {
             res.status(200).json({absensi, msg: `Status absensi: ${absensi.status}`})
@@ -16,17 +82,14 @@ route.get('/status', async (req, res) => {
         }
 
     } catch (error) {
-        res.status(500).json({msg: 'Internal server error'})   
+        res.status(500).json({msg: 'Internal server error'})
     }
 })
-route.post('/buka', async (req, res) => {
-    try {
-        const users = await User.updateMany({}, {$set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]}})
 
-        const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: false }, {
+route.post('/buka/:id', async (req, res) => {
+    try {
+        const absensi = await Absensi.findOneAndUpdate({ _id: req.params.id, status: req.body.status }, {
             $set: {
-                note: req.body.note || '',
-                title: req.body.title || 'Dzuhur',
                 openedBy: req.body.openedBy,
                 status: true,
                 date: Date.now()
@@ -34,7 +97,7 @@ route.post('/buka', async (req, res) => {
         }, {new: true})
 
         if (absensi) {
-            res.status(200).json({usersLength: users.matchedCount, msg: 'Absensi dibuka untuk semua pengguna', absensi })
+            res.status(200).json({msg: 'Absensi dibuka untuk semua pengguna', absensi })
         } else {
             res.status(404).json({ msg: 'Absensi sudah terbuka' });
         }
@@ -44,18 +107,30 @@ route.post('/buka', async (req, res) => {
     }
 })
 
-route.post('/tutup', async (req, res) => {
+route.post('/tutup/:id', async (req, res) => {
     try {
-        const users = await User.find({})
-        
-        const report = {
-            msg: 'Absensi ditutup untuk semua pengguna',
-            tidak: users.filter(x => x.absen === false).length,
-            belum: users.filter(x => x.absen === null).length,
-            sudah: users.filter(x => x.absen === true).length
+        const absensi = await Absensi.findOneAndUpdate({ _id: req.params.id, status: req.body.status }, {
+            $set: {
+                openedBy: req.body.openedBy,
+                status: false,
+                date: Date.now()
+            }
+        }, {new: true})
+
+        if (absensi) {
+            res.status(200).json({msg: 'Absensi ditutup untuk semua pengguna', absensi })
+        } else {
+            res.status(404).json({ msg: 'Absensi sudah terbuka' });
         }
 
-        const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: true }, {
+    } catch (error) {
+        res.status(500).json({msg: 'Internal server error'})   
+    }
+})
+
+route.post('/simpan/:id', async (req, res) => {
+    try {
+        const absensi = await Absensi.findOneAndDelete({ _id: req.params.id, status: req.body.status }, {
             $set: {
                 openedBy: req.body.closedBy || null,
                 status: false,
@@ -65,36 +140,40 @@ route.post('/tutup', async (req, res) => {
             }
         }, {new: true})
 
-        const userAbsence = users.filter(user => user.absen !== null).map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, kelas: user.kelas, nomorKelas: user.nomorKelas}))
-
+        // simpan sebagai riwayat (History)
+        
+        const userAbsence = absensi?.users?.map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, kelas: user.kelas, nomorKelas: user.nomorKelas}))
         const history = new Riwayat({
             users: userAbsence,
-            title: 'Dzuhur'
+            title: absensi?.title,
+            note: absensi?.note,
         })
 
         await history.save()
+        // laporan
+        // const users = await User.find({})
+        // const report = {
+        //     msg: 'Absensi ditutup untuk semua pengguna',
+        //     tidak: absensi?.users?.filter(x => x.absen === false).length || 0,
+        //     // belum: null,
+        //     sudah: absensi?.users?.filter(x => x.absen === true).length || 0
+        // }
+        // report.belum = users.length - report.tidak - report.belum
         
-        await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
+        // await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
 
-        res.status(200).json({...report, absensi})
+        // res.status(200).json({...report, absensi})
+        console.log(absensi)
+        res.status(200).json({msg: 'ok', absensi})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Internal server error'})   
     }
 })
 
-route.post('/buang', async (req, res) => {
+route.delete('/buang/:id', async (req, res) => {
     try {
-        const users = await User.find({})
-        
-        const report = {
-            msg: 'Data absensi dibuang',
-            tidak: users.filter(x => x.absen === false).length,
-            belum: users.filter(x => x.absen === null).length,
-            sudah: users.filter(x => x.absen === true).length
-        }
-
-        const absensi = await Absensi.findOneAndUpdate({ _id: process.env.ABSENSI_ID, status: true }, {
+        const absensi = await Absensi.findOneAndDelete({ _id: req.params.id }, {
             $set: {
                 openedBy: req.body.closedBy || null,
                 status: false,
@@ -104,9 +183,7 @@ route.post('/buang', async (req, res) => {
             }
         }, {new: true})
         
-        await User.updateMany({}, { $set: {absen: null, keterangan: null, waktuAbsen: null, kode: '-', koordinat: [0, 0]} })
-
-        res.status(200).json({...report, absensi})
+        res.status(200).json({absensi})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Internal server error'})   

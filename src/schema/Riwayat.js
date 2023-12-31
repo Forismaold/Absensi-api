@@ -24,7 +24,7 @@ const riwayatSchema = new mongoose.Schema({
                 type: [Number],
                 default: [0, 0],
             },
-            _id: mongoose.Schema.Types.ObjectId,
+            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
             nama: {type: String, default: 'Anon'},
             kelas: {type: String, default: ''},
             nomorKelas: {type: String, default: ''}
@@ -38,18 +38,22 @@ const riwayatSchema = new mongoose.Schema({
     title: {
         type: String,
         default: 'Dzuhur'
-    }
+    },
+    note: {
+        type: String,
+        default: ''
+    },
 })
 
-riwayatSchema.virtual('tidakAbsen').get(function() {
-    return this.users.filter(user => user.absen === false)
-})
-riwayatSchema.virtual('belumAbsen').get(function() {
-    return this.users.filter(user => user.absen === null)
-})
-riwayatSchema.virtual('sudahAbsen').get(function() {
-    return this.users.filter(user => user.absen === true)
-})
+// riwayatSchema.virtual('tidakAbsen').get(function() {
+//     return this.users.filter(user => user.absen === false)
+// })
+// riwayatSchema.virtual('belumAbsen').get(function() {
+//     return this.users.filter(user => user.absen === null)
+// })
+// riwayatSchema.virtual('sudahAbsen').get(function() {
+//     return this.users.filter(user => user.absen === true)
+// })
 
 const Riwayat = mongoose.model('Riwayat', riwayatSchema)
 export default Riwayat

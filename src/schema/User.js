@@ -49,31 +49,31 @@ const userSchema = new mongoose.Schema({
     type: [String],
     default: []
   },
-  absen: {
-    type: Boolean,
-    default: null
-  },
   hash: {
     type: String,
     default: ''
   },
-  kode: {
-    type: String,
-    enum: ['I', 'S', 'A', 'H', '-'],
-    default: '-'
-  },
-  keterangan: {
-    type: String,
-    default: '',
-  },
-  waktuAbsen: {
-    type: Date,
-    default: new Date(),
-  },
-  koordinat: {
-    type: [Number],
-    default: [0, 0],
-  },
+  // absen: {
+  //   type: Boolean,
+  //   default: null
+  // },
+  // kode: {
+  //   type: String,
+  //   enum: ['I', 'S', 'A', 'H', '-'],
+  //   default: '-'
+  // },
+  // keterangan: {
+  //   type: String,
+  //   default: '',
+  // },
+  // waktuAbsen: {
+  //   type: Date,
+  //   default: new Date(),
+  // },
+  // koordinat: {
+  //   type: [Number],
+  //   default: [0, 0],
+  // },
   lainnya: Object
 })
 
