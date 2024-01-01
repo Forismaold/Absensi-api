@@ -21,30 +21,33 @@ const absensiSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
-    users: [{
-        id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-        nama: { type: String, default: null },
-        absen: { type: Boolean, default: null },
-        kelas: { type: String, default: '' },
-        nomorKelas: { type: String, default: '' },
-        kode: {
-            type: String,
-            enum: ["I", "S", "A", "H", "-"],
-            default: "-",
-        },
-        keterangan: {
-            type: String,
-            default: "",
-        },
-        waktuAbsen: {
-            type: Date,
-            default: new Date(),
-        },
-        koordinat: {
-            type: [Number],
-            default: [0, 0],
-        }
-    }],
+    users: {
+        type: [{
+            id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+            nama: { type: String, default: null },
+            absen: { type: Boolean, default: null },
+            kelas: { type: String, default: '' },
+            nomorKelas: { type: String, default: '' },
+            kode: {
+                type: String,
+                enum: ["I", "S", "A", "H", "-"],
+                default: "-",
+            },
+            keterangan: {
+                type: String,
+                default: "",
+            },
+            waktuAbsen: {
+                type: Date,
+                default: new Date(),
+            },
+            koordinat: {
+                type: [Number],
+                default: [0, 0],
+            }
+        }],
+        default: []
+    },
 });
 
 const Absensi = mongoose.model("Absensi", absensiSchema);

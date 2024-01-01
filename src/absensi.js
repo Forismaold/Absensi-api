@@ -7,7 +7,33 @@ const route = express.Router()
 
 route.get('/', async (req, res) => {
     try {
-        const data = await Absensi.find().select()
+        const data = await Absensi.find()
+        if (data) {
+            res.status(200).json({data})
+        } else {
+            res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+        }
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
+route.get('/short', async (req, res) => {
+    try {
+        const data = await Absensi.find().select('title note date openedBy status')
+        if (data) {
+            res.status(200).json({data})
+        } else {
+            res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg: 'Internal server error', hi: 'lol' })
+    }
+})
+
+route.get('/:id', async (req, res) => {
+    try {
+        const data = await Absensi.findById(req.params.id)
         if (data) {
             res.status(200).json({data})
         } else {

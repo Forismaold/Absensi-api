@@ -26,23 +26,50 @@ route.post('/tidakHadir', async (req, res) => {
     }
 })
 
-route.post('/hadir', async (req, res) => {
+route.post('/hadir/:id', async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.body._id, {
-            $set: {
-                absen: true,
-                keterangan: null, 
-                waktuAbsen: new Date(), 
-                kode: '-',
-                koordinat: req.body.userCoordinate
-            }
-        }, {new: true})
-        if (user) {
-            res.json({status: getUserStatus(user), msg: 'Berhasil absen'})
+        let absensi
+        const data = {
+            _id: req.body._id,
+            nama: req.body.nama,
+            kelas: req.body.kelas,
+            nomorKelas: req.body.nomorKelas,
+            nomorAbsen: req.body.nomorAbsen,
+            absen: true,
+            keterangan: null, 
+            waktuAbsen: new Date(), 
+            kode: '-',
+            koordinat: req.body.userCoordinate
+        }
+        if (req.body.status) {
+            absensi = await Absensi.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    'users.$[user].nama': data.nama,
+                    'users.$[user].kelas': data.kelas,
+                    'users.$[user].nomorKelas': data.nomorKelas,
+                    'users.$[user].nomorAbsen': data.nomorAbsen,
+                    'users.$[user].absen': data.absen,
+                    'users.$[user].keterangan': data.keterangan,
+                    'users.$[user].waktuAbsen': data.waktuAbsen,
+                    'users.$[user].kode': data.kode,
+                    'users.$[user].koordinat': data.koordinat,
+                },
+            }, {new: true, arrayFilters: [{'user._id': req.body._id}]})
+        } else {
+            absensi = await Absensi.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    users: data
+                },
+            }, {new: true})
+        }
+
+        if (absensi) {
+            res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
             res.status(404).json({msg: 'User tidak ditemukan'})
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({msg: 'Internal server error'})
     }
 })
