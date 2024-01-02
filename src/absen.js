@@ -5,19 +5,49 @@ import Absensi from './schema/Absensi.js'
 
 const route = express.Router()
 
+async function kehadiran(_id, userId, status, data) {
+    let absensi
+    if (status) {
+        absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
+            $set: {
+                'users.$[user].nama': data.nama,
+                'users.$[user].kelas': data.kelas,
+                'users.$[user].nomorKelas': data.nomorKelas,
+                'users.$[user].nomorAbsen': data.nomorAbsen,
+                'users.$[user].absen': data.absen,
+                'users.$[user].keterangan': data.keterangan,
+                'users.$[user].waktuAbsen': data.waktuAbsen,
+                'users.$[user].kode': data.kode,
+                'users.$[user].koordinat': data.koordinat,
+            },
+        }, {new: true, arrayFilters: [{'user._id': userId}]})
+    } else {
+        absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
+            $push: {
+                users: data
+            },
+        }, {new: true})
+    }
+    return absensi
+}
+
 route.post('/tidakHadir', async (req, res) => {
     try {
-        const user = await User.findByIdAndUpdate(req.body._id, {
-            $set: {
-                kode: req.body.kode,
-                keterangan: req.body.keterangan,
-                waktuAbsen: new Date(),
-                absen: false,
-                koordinat: req.body.userCoordinate
-            }
-        }, {new: true})
-        if (user) {
-            res.json({status: getUserStatus(user), msg: 'Berhasil mengirim keterangan'})
+        const data = {
+            _id: req.body._id,
+            nama: req.body.nama,
+            kelas: req.body.kelas,
+            nomorKelas: req.body.nomorKelas,
+            nomorAbsen: req.body.nomorAbsen,
+            absen: false,
+            keterangan: req.body.keterangan, 
+            waktuAbsen: new Date(), 
+            kode: req.body.kode,
+            koordinat: req.body.userCoordinate
+        }
+        const absensi = kehadiran(req.params.id, req.body._id,req.body.status, data)
+        if (absensi) {
+            res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
             res.status(404).json({msg: 'User tidak ditemukan'})
         }
@@ -28,7 +58,6 @@ route.post('/tidakHadir', async (req, res) => {
 
 route.post('/hadir/:id', async (req, res) => {
     try {
-        let absensi
         const data = {
             _id: req.body._id,
             nama: req.body.nama,
@@ -41,27 +70,8 @@ route.post('/hadir/:id', async (req, res) => {
             kode: '-',
             koordinat: req.body.userCoordinate
         }
-        if (req.body.status) {
-            absensi = await Absensi.findByIdAndUpdate(req.params.id, {
-                $set: {
-                    'users.$[user].nama': data.nama,
-                    'users.$[user].kelas': data.kelas,
-                    'users.$[user].nomorKelas': data.nomorKelas,
-                    'users.$[user].nomorAbsen': data.nomorAbsen,
-                    'users.$[user].absen': data.absen,
-                    'users.$[user].keterangan': data.keterangan,
-                    'users.$[user].waktuAbsen': data.waktuAbsen,
-                    'users.$[user].kode': data.kode,
-                    'users.$[user].koordinat': data.koordinat,
-                },
-            }, {new: true, arrayFilters: [{'user._id': req.body._id}]})
-        } else {
-            absensi = await Absensi.findByIdAndUpdate(req.params.id, {
-                $push: {
-                    users: data
-                },
-            }, {new: true})
-        }
+        
+        const absensi = kehadiran(req.params.id, req.body._id ,req.body.status, data)
 
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
