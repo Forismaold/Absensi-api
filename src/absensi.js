@@ -40,7 +40,7 @@ route.get('/:id', async (req, res) => {
         if (data) {
             res.status(200).json({data})
         } else {
-            res.status(404).json({ msg: 'Absensi tidak ditemukan' })
+            res.status(404).json({ msg: 'Absensi ' + req.params.id + ' tidak ditemukan' })
         }
     } catch (error) {
         console.log(error)
