@@ -31,7 +31,7 @@ async function kehadiran(_id, userId, status, data) {
     return absensi
 }
 
-route.post('/tidakHadir', async (req, res) => {
+route.post('/tidakHadir/:id', async (req, res) => {
     try {
         const data = {
             _id: req.body._id,
@@ -45,7 +45,7 @@ route.post('/tidakHadir', async (req, res) => {
             kode: req.body.kode,
             koordinat: req.body.userCoordinate
         }
-        const absensi = kehadiran(req.params.id, req.body._id,req.body.status, data)
+        const absensi = await kehadiran(req.params.id, req.body._id,req.body.status, data)
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
@@ -71,8 +71,7 @@ route.post('/hadir/:id', async (req, res) => {
             koordinat: req.body.userCoordinate
         }
         
-        const absensi = kehadiran(req.params.id, req.body._id ,req.body.status, data)
-
+        const absensi = await kehadiran(req.params.id, req.body._id ,req.body.status, data)
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {

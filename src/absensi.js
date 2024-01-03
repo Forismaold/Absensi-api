@@ -1,9 +1,9 @@
 import express from 'express'
-import User from './schema/User.js'
 import Riwayat from './schema/Riwayat.js'
 import Absensi from './schema/Absensi.js'
 import { getUserStatus } from './utils.js'
 const route = express.Router()
+import mongoose from 'mongoose'
 
 route.get('/', async (req, res) => {
     try {
@@ -32,6 +32,9 @@ route.get('/short', async (req, res) => {
 })
 
 route.get('/:id', async (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({ msg: 'Absensi dengain id ' + req.params.id + ' tidak ditemukan', data: {} });
+    }
     try {
         const data = await Absensi.findById(req.params.id)
         if (data) {
@@ -40,6 +43,7 @@ route.get('/:id', async (req, res) => {
             res.status(404).json({ msg: 'Absensi tidak ditemukan' })
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({ msg: 'Internal server error' })
     }
 })
