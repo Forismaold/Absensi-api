@@ -32,7 +32,7 @@ route.post('/login/form', async (req, res) => {
     try {
         const user = await User.findOne({ nama })
         if (!user) {
-          return res.status(401).json({ msg: `Tidak ada pengguna dengan nama "${nama}"`});
+            return res.status(401).json({ msg: `Tidak ada pengguna dengan nama "${nama}"`});
         }
     
         bcrypt.compare(password, user.hash, (err, result) => {

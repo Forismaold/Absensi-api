@@ -29,10 +29,12 @@ route.get('/:userId', async (req, res) => {
 
 route.delete('/:riwayatId', async (req, res) => {
     try {
-        const riwayats = await Riwayat.findByIdAndDelete(req.params.riwayatId)
-        console.log(riwayats);
-        if (riwayats) return res.json({riwayats: riwayats, msg: 'Berhasil menghapus riwayat'})
-        res.status(404).json({riwayats: riwayats, msg: 'Riwayat gagal dihapus'})
+        const data = await Riwayat.findByIdAndDelete(req.params.riwayatId)
+        if (data) {
+            const riwayats = await Riwayat.find({})
+            return res.json({riwayats, msg: 'Berhasil menghapus riwayat'})
+        }
+        res.status(404).json({msg: 'Riwayat gagal dihapus'})
     } catch (error) {
         console.log(error);
         res.status(500).json({msg: 'Internal server error'})
