@@ -5,9 +5,11 @@ import Absensi from './schema/Absensi.js'
 
 const route = express.Router()
 
-async function kehadiran(_id, userId, status, data) {
+async function kehadiran(_id, userId, data) {
     let absensi
-    if (status) {
+    const userExist = await Absensi.findOne({_id, status: true, 'users._id' : userId})
+    if (userExist) {
+        console.log('exist')
         absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
             $set: {
                 'users.$[user].nama': data.nama,
@@ -28,6 +30,7 @@ async function kehadiran(_id, userId, status, data) {
             },
         }, {new: true})
     }
+    console.log('absensi', absensi);
     return absensi
 }
 
@@ -70,8 +73,7 @@ route.post('/hadir/:id', async (req, res) => {
             kode: '-',
             koordinat: req.body.userCoordinate
         }
-        
-        const absensi = await kehadiran(req.params.id, req.body._id ,req.body.status, data)
+        const absensi = await kehadiran(req.params.id, req.body._id, data)
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {

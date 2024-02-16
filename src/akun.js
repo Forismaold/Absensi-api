@@ -6,6 +6,27 @@ import { encryptObject } from './utils.js';
 
 const route = express.Router()
 
+route.get('/length', async (req, res) => {
+    try {
+        await User.find().then((results) => {
+            res.json({'length': results.length})
+        })        
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
+
+route.get('/length', async (req, res) => {
+    try {
+        await User.findById('').then((results) => {
+            res.json({'length': results.length})
+        })        
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
+
+
 route.post('/daftar', async (req, res) => {
     const dataUser = req.body
     try {
