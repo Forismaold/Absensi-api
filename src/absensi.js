@@ -71,7 +71,8 @@ route.put('/:id', async (req, res) => {
                 openedBy: req.body.openedBy,
                 date: Date.now(),
                 title: req.body.title,
-                note: req.body.note
+                note: req.body.note,
+                coordinates: req.body.coordinates,
             }
         }, {new: true})
 
@@ -177,6 +178,7 @@ route.post('/simpan/:id', async (req, res) => {
             users: userAbsence,
             title: absensi?.title,
             note: absensi?.note,
+            coordinates: absensi?.coordinates,
         })
 
         await history.save()

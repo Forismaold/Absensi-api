@@ -43,6 +43,16 @@ const riwayatSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    coordinates: {
+        first: {
+            type: [Number],
+            default: [],
+        },
+        second: {
+            type: [Number],
+            default: [],
+        },
+    },
 })
 
 // riwayatSchema.virtual('tidakAbsen').get(function() {

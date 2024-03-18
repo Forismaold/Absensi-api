@@ -21,6 +21,16 @@ const absensiSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    coordinates: {
+        first: {
+            type: [Number],
+            default: [],
+        },
+        second: {
+            type: [Number],
+            default: [],
+        },
+    },
     users: {
         type: [{
             id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
