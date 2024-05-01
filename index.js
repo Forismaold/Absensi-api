@@ -15,10 +15,11 @@ import absensi from './src/absensi.js'
 // config
 const app = express()
 const port = process.env.PORT || 3001
+const nodeEnv = process.env.NODE_ENV || undefined
 
 // middleware
 app.use('*', cors({
-    origin: process.env.NODE_ENV === 'development' ? ['http://localhost:3000'] : ['https://absensiswa.netlify.app'],
+    origin: nodeEnv === 'development' ? ['http://localhost:3000'] : ['https://absensiswa.netlify.app'],
     methods: 'GET,PUT,POST,DELETE',
 }))
 
