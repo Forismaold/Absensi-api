@@ -100,5 +100,40 @@ route.get('/status/:userId', async (req, res) => {
     }
 })
 
+route.put('/force/hadir/:id', async (req, res) => {
+    const absensiId = req.params.id;
+    const { koordinat, userId } = req.body;
+    console.log('force hadir detected', absensiId, koordinat, userId);
+
+    // absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
+    //     $set: {
+    //         'users.$[user].nama': data.nama,
+    //         'users.$[user].kelas': data.kelas,
+    //         'users.$[user].nomorKelas': data.nomorKelas,
+    //         'users.$[user].nomorAbsen': data.nomorAbsen,
+    //         'users.$[user].absen': data.absen,
+    //         'users.$[user].keterangan': data.keterangan,
+    //         'users.$[user].waktuAbsen': data.waktuAbsen,
+    //         'users.$[user].kode': data.kode,
+    //         'users.$[user].koordinat': data.koordinat,
+    //     },
+    // }, {new: true, arrayFilters: [{'user._id': userId}]})
+    try {
+        const absensi = await Absensi.findOneAndUpdate(
+            { _id: absensiId},
+            { $set: { 'users.$[user].koordinat': koordinat } },
+            { new: true, arrayFilters: [{'user._id': userId}] }
+        );
+
+        if (!absensi) {
+            return res.status(404).json({ message: 'Absensi or User not found', success: false });
+        }
+
+        res.json({absensi, success: true});
+    } catch (error) {
+        res.status(500).send({ message: 'Internal Server Error', error });
+    }
+})
+
 
 export default route
