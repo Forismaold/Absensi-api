@@ -25,6 +25,10 @@ app.use('*', cors({
 
 app.use(bodyParser.json())
 
+app.use('/', (req, res) => {
+    res.json({hello: 'world'})
+})
+
 app.use('/akun', akun)
 
 app.use('/users', users)

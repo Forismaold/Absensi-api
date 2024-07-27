@@ -1,9 +1,34 @@
 import mongoose from "mongoose";
 
+const userAttendanceSchema = new mongoose.Schema({
+    id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
+    kode: {
+        type: String,
+        enum: ["I", "S", "A", "H", "-"],
+        default: "-",
+    },
+    keterangan: {
+        type: String,
+        default: "",
+    },
+    waktuAbsen: {
+        type: Date,
+        default: Date.now,
+    },
+    koordinat: {
+        type: [Number],
+        default: [0, 0],
+    },
+});
+
 const absensiSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
+        index: true,
     },
     title: {
         type: String,
@@ -32,31 +57,8 @@ const absensiSchema = new mongoose.Schema({
         },
     },
     users: {
-        type: [{
-            id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-            nama: { type: String, default: null },
-            absen: { type: Boolean, default: null },
-            kelas: { type: String, default: '' },
-            nomorKelas: { type: String, default: '' },
-            kode: {
-                type: String,
-                enum: ["I", "S", "A", "H", "-"],
-                default: "-",
-            },
-            keterangan: {
-                type: String,
-                default: "",
-            },
-            waktuAbsen: {
-                type: Date,
-                default: new Date(),
-            },
-            koordinat: {
-                type: [Number],
-                default: [0, 0],
-            }
-        }],
-        default: []
+        type: [userAttendanceSchema],
+        default: [],
     },
 });
 

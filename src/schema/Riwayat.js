@@ -1,34 +1,33 @@
 import mongoose from "mongoose";
 
+const userAttendanceSchema = new mongoose.Schema({
+    absen: {
+        type: Boolean,
+        default: null
+    },
+    kode: {
+        type: String,
+        enum: ['I', 'S', 'A', 'H', '-'],
+        default: '-'
+    },
+    keterangan: {
+        type: String,
+        default: '',
+    },
+    waktuAbsen: {
+        type: Date,
+        default: new Date(),
+    },
+    koordinat: {
+        type: [Number],
+        default: [0, 0],
+    },
+    _id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+})
+
 const riwayatSchema = new mongoose.Schema({
     users: {
-        type: [{
-            absen: {
-                type: Boolean,
-                default: null
-            },
-            kode: {
-                type: String,
-                enum: ['I', 'S', 'A', 'H', '-'],
-                default: '-'
-            },
-            keterangan: {
-                type: String,
-                default: '',
-            },
-            waktuAbsen: {
-                type: Date,
-                default: new Date(),
-            },
-            koordinat: {
-                type: [Number],
-                default: [0, 0],
-            },
-            _id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-            nama: {type: String, default: 'Anon'},
-            kelas: {type: String, default: ''},
-            nomorKelas: {type: String, default: ''}
-        }],
+        type: [userAttendanceSchema],
         default: []
     },
     date: {
