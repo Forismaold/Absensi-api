@@ -6,7 +6,6 @@ const route = express.Router()
 import mongoose from 'mongoose'
 
 route.get('/', async (req, res) => {
-    console.log('index get route reached');
     try {
         const data = await Absensi.find()
         if (data) {

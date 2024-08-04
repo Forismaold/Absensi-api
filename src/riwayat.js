@@ -16,7 +16,7 @@ route.get('/:userId', async (req, res) => {
     try {
         const riwayats = await Riwayat.find({})
         const mappingRiwayat = riwayats.map(riwayat => {
-            const user = riwayat.users.find(user => user._id.equals(req.params.userId))
+            const user = riwayat.tickets.find(user => user._id.equals(req.params.userId))
             return {title: riwayat.title, absen: user?.absen, date: user?.waktuAbsen, _id: riwayat?._id, koordinat: user?.koordinat}
         })
 
