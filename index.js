@@ -25,7 +25,7 @@ app.use('*', cors({
 
 app.use(bodyParser.json())
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.json({hello: 'world'})
 })
 

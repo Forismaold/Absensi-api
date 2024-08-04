@@ -1,35 +1,7 @@
 import mongoose from "mongoose";
-
-const userAttendanceSchema = new mongoose.Schema({
-    absen: {
-        type: Boolean,
-        default: null
-    },
-    kode: {
-        type: String,
-        enum: ['I', 'S', 'A', 'H', '-'],
-        default: '-'
-    },
-    keterangan: {
-        type: String,
-        default: '',
-    },
-    waktuAbsen: {
-        type: Date,
-        default: new Date(),
-    },
-    koordinat: {
-        type: [Number],
-        default: [0, 0],
-    },
-    _id: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-})
+import ticketSchema from "./Ticket.js";
 
 const riwayatSchema = new mongoose.Schema({
-    users: {
-        type: [userAttendanceSchema],
-        default: []
-    },
     date: {
         type: Date,
         default: Date.now()
@@ -51,6 +23,10 @@ const riwayatSchema = new mongoose.Schema({
             type: [Number],
             default: [],
         },
+    },
+    tickets: {
+        type: [ticketSchema],
+        default: []
     },
 })
 

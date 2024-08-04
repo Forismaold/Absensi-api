@@ -5,49 +5,41 @@ import Absensi from './schema/Absensi.js'
 
 const route = express.Router()
 
-async function kehadiran(_id, userId, data) {
+async function pushTicket(absenceId, data) {
     let absensi
-    let userExist = await Absensi.findOne({_id, status: true, "users.id": userId })
+    let userExist = await Absensi.findOne({_id: absenceId, status: true, "tickets.user": data.user })
     if (userExist) {
-        absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
+        absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $set: {
-                'users.$[user].nama': data.nama,
-                'users.$[user].kelas': data.kelas,
-                'users.$[user].nomorKelas': data.nomorKelas,
-                'users.$[user].nomorAbsen': data.nomorAbsen,
                 'users.$[user].absen': data.absen,
                 'users.$[user].keterangan': data.keterangan,
                 'users.$[user].waktuAbsen': data.waktuAbsen,
                 'users.$[user].kode': data.kode,
                 'users.$[user].koordinat': data.koordinat,
             },
-        }, {new: true, arrayFilters: [{'user._id': userId}]})
+        }, {new: true, arrayFilters: [{'tickets.user': data.user}]}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
     } else {
-        absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
+        console.log('user data absence', data)
+        absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $push: {
-                users: data
+                tickets: data
             },
-        }, {new: true})
+        }, {new: true}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
     }
-    console.log('absensi', absensi);
     return absensi
 }
 
 route.post('/tidakHadir/:id', async (req, res) => {
     try {
         const data = {
-            _id: req.body._id,
-            nama: req.body.nama,
-            kelas: req.body.kelas,
-            nomorKelas: req.body.nomorKelas,
-            nomorAbsen: req.body.nomorAbsen,
+            user: req.body.user,
             absen: false,
             keterangan: req.body.keterangan, 
             waktuAbsen: new Date(), 
             kode: req.body.kode,
             koordinat: req.body.userCoordinate
         }
-        const absensi = await kehadiran(req.params.id, req.body._id, data)
+        const absensi = await pushTicket(req.params.id, data)
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
@@ -61,19 +53,14 @@ route.post('/tidakHadir/:id', async (req, res) => {
 route.post('/hadir/:id', async (req, res) => {
     try {
         const data = {
-            _id: req.body._id,
-            nama: req.body.nama,
-            kelas: req.body.kelas,
-            nomorKelas: req.body.nomorKelas,
-            nomorAbsen: req.body.nomorAbsen,
+            user: req.body.user,
             absen: true,
-            keterangan: null, 
+            keterangan: null,
             waktuAbsen: new Date(), 
-            kode: '-',
             koordinat: req.body.userCoordinate
         }
         
-        const absensi = await kehadiran(req.params.id, req.body._id, data)
+        const absensi = await pushTicket(req.params.id, data)
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
@@ -85,21 +72,22 @@ route.post('/hadir/:id', async (req, res) => {
     }
 })
 
-route.get('/status/:userId', async (req, res) => {
-    try {
-        const absensi = await Absensi.findById(process.env.ABSENSI_ID)
-        const userId = req.params.userId
+// route.get('/status/:userId', async (req, res) => {
+//     try {
+//         const absensi = await Absensi.findById(process.env.ABSENSI_ID)
+//         const userId = req.params.userId
 
-        if (userId === 'undefined') return res.json({ absensi })
+//         if (userId === 'undefined') return res.json({ absensi })
 
-        const user = await User.findById(userId)
-        res.json({ status: { ...getUserStatus(user) }, absensi })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({ msg: 'Internal server error' })
-    }
-})
+//         const user = await User.findById(userId)
+//         res.json({ status: { ...getUserStatus(user) }, absensi })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(500).json({ msg: 'Internal server error' })
+//     }
+// })
 
+// Admin control
 route.put('/force/hadir/:id', async (req, res) => {
     const absensiId = req.params.id;
     const { koordinat, userId } = req.body;

@@ -6,6 +6,7 @@ const route = express.Router()
 import mongoose from 'mongoose'
 
 route.get('/', async (req, res) => {
+    console.log('index get route reached');
     try {
         const data = await Absensi.find()
         if (data) {
@@ -33,14 +34,15 @@ route.get('/short', async (req, res) => {
 
 route.get('/:id', async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-        return res.status(400).json({ msg: 'Absensi dengain id ' + req.params.id + ' tidak ditemukan', data: {} });
+        return res.status(400).json({ msg: 'ID absensi ' + req.params.id + ' tidak valid!', data: {} });
     }
     try {
-        const data = await Absensi.findById(req.params.id)
+        const data = await Absensi.findById(req.params.id).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
         if (data) {
             res.status(200).json({data})
         } else {
-            res.status(404).json({ msg: 'Absensi ' + req.params.id + ' tidak ditemukan' })
+            console.log(data)
+            res.status(404).json({ msg: '404 :( - Absensi tidak ditemukan!' })
         }
     } catch (error) {
         console.log(error)
@@ -52,12 +54,7 @@ route.post('/', async (req, res) => {
     try {
         const absensi = new Absensi(req.body)
         await absensi.save().then(async (absensi) => {
-            const data = await Absensi.find()
-            if (data) {
-                res.status(200).json({data})
-            } else {
-                res.status(404).json({ msg: 'Absensi tidak ditemukan' })
-            }
+            res.status(200).json({absensi})
         })
     } catch (error) {
         res.status(500).json({ msg: 'Internal server error' })
@@ -172,13 +169,12 @@ route.post('/simpan/:id', async (req, res) => {
         }, {new: true})
 
         // simpan sebagai riwayat (History)
-        
-        const userAbsence = absensi?.users?.map(user => ({...getUserStatus(user), _id: user._id, nama: user.nama, kelas: user.kelas, nomorKelas: user.nomorKelas}))
+        const userAbsence = absensi?.users?.map(user => ({...getUserStatus(user), user: user.user}))
         const history = new Riwayat({
-            users: userAbsence,
             title: absensi?.title,
             note: absensi?.note,
             coordinates: absensi?.coordinates,
+            tickets: userAbsence,
         })
 
         await history.save()
