@@ -7,7 +7,7 @@ import mongoose from 'mongoose'
 
 route.get('/', async (req, res) => {
     try {
-        const data = await Absensi.find()
+        const data = await Absensi.find().populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
         if (data) {
             res.status(200).json({data})
         } else {

@@ -11,11 +11,11 @@ async function pushTicket(absenceId, data) {
     if (userExist) {
         absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $set: {
-                'users.$[user].absen': data.absen,
-                'users.$[user].keterangan': data.keterangan,
-                'users.$[user].waktuAbsen': data.waktuAbsen,
-                'users.$[user].kode': data.kode,
-                'users.$[user].koordinat': data.koordinat,
+                'tickets.$[user].absen': data.absen,
+                'tickets.$[user].keterangan': data.keterangan,
+                'tickets.$[user].waktuAbsen': data.waktuAbsen,
+                'tickets.$[user].kode': data.kode,
+                'tickets.$[user].koordinat': data.koordinat,
             },
         }, {new: true, arrayFilters: [{'tickets.user': data.user}]}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
     } else {
@@ -109,7 +109,7 @@ route.put('/force/hadir/:id', async (req, res) => {
     try {
         const absensi = await Absensi.findOneAndUpdate(
             { _id: absensiId},
-            { $set: { 'users.$[user].koordinat': koordinat } },
+            { $set: { 'tickets.$[user].koordinat': koordinat } },
             { new: true, arrayFilters: [{'user._id': userId}] }
         );
 
