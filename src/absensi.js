@@ -86,7 +86,7 @@ route.put('/:id', async (req, res) => {
 
 route.get('/detail/:id', async (req, res) => {
     try {
-        const data = await Absensi.findById(req.params.id)
+        const data = await Absensi.findById(req.params.id).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
 
         if (data) {
             res.status(200).json({data})

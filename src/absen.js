@@ -1,6 +1,4 @@
 import express from 'express'
-import User from './schema/User.js'
-import { getUserStatus } from './utils.js'
 import Absensi from './schema/Absensi.js'
 
 const route = express.Router()
@@ -11,15 +9,14 @@ async function pushTicket(absenceId, data) {
     if (userExist) {
         absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $set: {
-                'tickets.$[user].absen': data.absen,
-                'tickets.$[user].keterangan': data.keterangan,
-                'tickets.$[user].waktuAbsen': data.waktuAbsen,
-                'tickets.$[user].kode': data.kode,
-                'tickets.$[user].koordinat': data.koordinat,
+                'tickets.$[user].absen': data?.absen,
+                'tickets.$[user].keterangan': data?.keterangan,
+                'tickets.$[user].waktuAbsen': data?.waktuAbsen,
+                'tickets.$[user].kode': data?.kode,
+                'tickets.$[user].koordinat': data?.koordinat,
             },
         }, {new: true, arrayFilters: [{'tickets.user': data.user}]}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
     } else {
-        console.log('user data absence', data)
         absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $push: {
                 tickets: data
@@ -43,7 +40,7 @@ route.post('/tidakHadir/:id', async (req, res) => {
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
-            res.status(404).json({msg: 'User tidak ditemukan'})
+            res.status(404).json({msg: 'User atau absensi tidak ditemukan'})
         }
     } catch (error) {
         res.status(500).json({msg: 'Internal server error'})
@@ -64,7 +61,7 @@ route.post('/hadir/:id', async (req, res) => {
         if (absensi) {
             res.json({data: absensi, msg: 'Berhasil absen'})
         } else {
-            res.status(404).json({msg: 'User tidak ditemukan'})
+            res.status(404).json({msg: 'User atau absensi tidak ditemukan'})
         }
     } catch (error) {
         console.log(error)
@@ -93,6 +90,21 @@ route.put('/force/hadir/:id', async (req, res) => {
     const { koordinat, userId } = req.body;
     console.log('force hadir detected', absensiId, koordinat, userId);
 
+    const data = {
+        user: req.body.user,
+        absen: true,
+        waktuAbsen: new Date(), 
+        koordinat: req.body.userCoordinate
+    }
+
+    const absensi = await pushTicket(req.params.id, data)
+
+    if (absensi) {
+        res.json({data: absensi, msg: 'Berhasil absen', success: true, ticket: absensi.tickets.find(ticket => ticket.user === data.user)})
+    } else {
+        res.status(404).json({msg: 'User atau absensi tidak ditemukan', success: false})
+    }
+
     // absensi = await Absensi.findOneAndUpdate({_id, status: true}, {
     //     $set: {
     //         'users.$[user].nama': data.nama,
@@ -106,21 +118,21 @@ route.put('/force/hadir/:id', async (req, res) => {
     //         'users.$[user].koordinat': data.koordinat,
     //     },
     // }, {new: true, arrayFilters: [{'user._id': userId}]})
-    try {
-        const absensi = await Absensi.findOneAndUpdate(
-            { _id: absensiId},
-            { $set: { 'tickets.$[user].koordinat': koordinat } },
-            { new: true, arrayFilters: [{'user._id': userId}] }
-        );
+    // try {
+        // const absensi = await Absensi.findOneAndUpdate(
+        //     { _id: absensiId},
+        //     { $set: { 'tickets.$[user].koordinat': koordinat } },
+        //     { new: true, arrayFilters: [{'user._id': userId}] }
+        // );
 
-        if (!absensi) {
-            return res.status(404).json({ message: 'Absensi or User not found', success: false });
-        }
+        // if (!absensi) {
+        //     return res.status(404).json({ message: 'Absensi or User not found', success: false });
+        // }
 
-        res.json({absensi, success: true});
-    } catch (error) {
-        res.status(500).send({ message: 'Internal Server Error', error });
-    }
+        // res.json({absensi, success: true});
+    // } catch (error) {
+    //     res.status(500).send({ message: 'Internal Server Error', error });
+    // }
 })
 
 
