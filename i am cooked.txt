@@ -1,0 +1,915 @@
+{
+  coordinates: {
+    first: [ -7.482044510981448, 110.22200388577714 ],
+    second: [ -7.482209927696517, 110.22228020994946 ]
+  },
+  _id: new ObjectId('66b55957a9df1007b1061aaf'),
+  title: 'Literasi SpiritualXI',
+  status: true,
+  openedBy: 'Maulana Choirul Aziz',
+  note: '',
+  date: 2024-08-09T00:31:48.802Z,
+  tickets: [
+    {
+      user: new ObjectId('66b560c0a9df1007b1061f74'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:31:50.251Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56376a9df1007b1062bea')
+    },
+    {
+      user: new ObjectId('663431a23ac3c6955a5a3e8c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:31:50.812Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56377a9df1007b1062bf0')
+    },
+    {
+      user: new ObjectId('66b560bea9df1007b1061f6e'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:31:58.175Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5637ea9df1007b1062c11')
+    },
+    {
+      user: new ObjectId('65c42611d09ad9080c2d4f50'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:02.097Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56382a9df1007b1062c2e')
+    },
+    {
+      user: new ObjectId('66b56311a9df1007b1062a88'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:06.333Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56386a9df1007b1062c54')
+    },
+    {
+      user: new ObjectId('65c42835cf5f6762f720a4ff'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:09.236Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56389a9df1007b1062c75')
+    },
+    {
+      user: new ObjectId('66b5617fa9df1007b1062515'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:11.540Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5638ba9df1007b1062c81')
+    },
+    {
+      user: new ObjectId('65c4289355182d9461218f5f'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:12.028Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5638ca9df1007b1062c98')
+    },
+    {
+      user: new ObjectId('66b56337a9df1007b1062ade'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:12.636Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5638ca9df1007b1062ca6')
+    },
+    {
+      user: new ObjectId('66b56291a9df1007b1062970'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:14.873Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5638fa9df1007b1062cda')
+    },
+    {
+      user: new ObjectId('66342fb13ac3c6955a59ed0f'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:19.711Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56393a9df1007b1062d2d')
+    },
+    {
+      user: new ObjectId('6634325f3ac3c6955a5a7b16'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:22.850Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56397a9df1007b1062d84')
+    },
+    {
+      user: new ObjectId('66b56374a9df1007b1062bde'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:23.699Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56397a9df1007b1062d95')
+    },
+    {
+      user: new ObjectId('65c4271846dfe23919773274'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:28.226Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5639ca9df1007b1062e08')
+    },
+    {
+      user: new ObjectId('663434a13ac3c6955a5aef8c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:28.984Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5639da9df1007b1062e1b')
+    },
+    {
+      user: new ObjectId('65c425ee5283db7b18dce906'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:31.644Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5639fa9df1007b1062e41')
+    },
+    {
+      user: new ObjectId('65b2fee6378eaeabc3c16080'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:32.080Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563a0a9df1007b1062e56')
+    },
+    {
+      user: new ObjectId('66b560a8a9df1007b1061f37'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:35.767Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563a3a9df1007b1062eac')
+    },
+    {
+      user: new ObjectId('65c42836cf5f6762f720a543'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:35.772Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563a4a9df1007b1062eae')
+    },
+    {
+      user: new ObjectId('65c425d35283db7b18dce8e2'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:36.177Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563a4a9df1007b1062ef0')
+    },
+    {
+      user: new ObjectId('65c4293172a5292ad74db841'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:41.640Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563a9a9df1007b1063007')
+    },
+    {
+      user: new ObjectId('66b5630fa9df1007b1062a85'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:43.092Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563aba9df1007b106303a')
+    },
+    {
+      user: new ObjectId('65c426ff46dfe239197731d8'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:44.801Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563ada9df1007b106306d')
+    },
+    {
+      user: new ObjectId('65c426845283db7b18dce991'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:45.937Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563aea9df1007b106308a')
+    },
+    {
+      user: new ObjectId('66b55e7ba9df1007b1061ccb'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:45.936Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563aea9df1007b106308d')
+    },
+    {
+      user: new ObjectId('66b5609ea9df1007b1061f1c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:46.743Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563aea9df1007b10630df')
+    },
+    {
+      user: new ObjectId('65c42629cf5f6762f7209504'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:48.269Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563b0a9df1007b1063138')
+    },
+    {
+      user: new ObjectId('6634310e3ac3c6955a5a0f0e'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:49.086Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563b1a9df1007b1063158')
+    },
+    {
+      user: new ObjectId('65c42684d09ad9080c2d5044'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:51.183Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563b3a9df1007b1063198')
+    },
+    {
+      user: new ObjectId('663430673ac3c6955a59f922'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:55.732Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563b7a9df1007b106327d')
+    },
+    {
+      user: new ObjectId('65c4261855182d94612180d5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:32:58.640Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563baa9df1007b1063324')
+    },
+    {
+      user: new ObjectId('65c4270e46dfe23919773231'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:00.936Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563bda9df1007b106336c')
+    },
+    {
+      user: new ObjectId('65c42976a607d0127f4e83be'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:05.150Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563c1a9df1007b10634ee')
+    },
+    {
+      user: new ObjectId('663431a93ac3c6955a5a404a'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:05.199Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563c1a9df1007b10634f0')
+    },
+    {
+      user: new ObjectId('65c425dc5283db7b18dce8ed'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:07.007Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563c3a9df1007b1063585')
+    },
+    {
+      user: new ObjectId('65c425e355182d9461218074'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:08.007Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563c4a9df1007b10635d3')
+    },
+    {
+      user: new ObjectId('65b301161da9bd6078aa4add'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:10.683Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563c6a9df1007b10636e6')
+    },
+    {
+      user: new ObjectId('66b560cba9df1007b1061f8c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:15.245Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563cba9df1007b1063852')
+    },
+    {
+      user: new ObjectId('65c426225283db7b18dce938'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:16.137Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563cca9df1007b106387e')
+    },
+    {
+      user: new ObjectId('65c42a18d5e0b3d303f66807'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:16.807Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563cda9df1007b10638d3')
+    },
+    {
+      user: new ObjectId('65b2fecfdd4e1065c59ff877'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:19.423Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563cfa9df1007b10639d5')
+    },
+    {
+      user: new ObjectId('65c4284ecf5f6762f720aa2b'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:21.484Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563d1a9df1007b1063ae0')
+    },
+    {
+      user: new ObjectId('65c426f65283db7b18dced1f'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:24.894Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563d5a9df1007b1063c4a')
+    },
+    {
+      user: new ObjectId('65c4268c5283db7b18dce99a'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:25.032Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563d5a9df1007b1063c4d')
+    },
+    {
+      user: new ObjectId('65c4292a72a5292ad74db6e5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:30.623Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563daa9df1007b1063f9a')
+    },
+    {
+      user: new ObjectId('65b2ff111da9bd6078aa4a2b'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:33.086Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563dda9df1007b10640bc')
+    },
+    {
+      user: new ObjectId('65c429c85283db7b18dd061d'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:35.736Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563dfa9df1007b106430d')
+    },
+    {
+      user: new ObjectId('663430c13ac3c6955a5a01e0'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:35.951Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563e0a9df1007b106433f')
+    },
+    {
+      user: new ObjectId('65c426a646dfe23919772fb0'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:37.893Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563e2a9df1007b10644a6')
+    },
+    {
+      user: new ObjectId('66b56057a9df1007b1061e7e'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:38.870Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563e3a9df1007b10645df')
+    },
+    {
+      user: new ObjectId('66b55e85a9df1007b1061cd2'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:45.721Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563eaa9df1007b1064be2')
+    },
+    {
+      user: new ObjectId('65c4296fa607d0127f4e80ca'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:47.878Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563eca9df1007b1064d27')
+    },
+    {
+      user: new ObjectId('65b2feccdd4e1065c59ff86a'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:50.365Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563eea9df1007b1064edf')
+    },
+    {
+      user: new ObjectId('65b2feb6ac3b1d7bbba5248a'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:52.112Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563f0a9df1007b106506a')
+    },
+    {
+      user: new ObjectId('66342f613ac3c6955a59e8d5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:53.794Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563f2a9df1007b1065235')
+    },
+    {
+      user: new ObjectId('663431a13ac3c6955a5a3e88'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:33:57.450Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b563f5a9df1007b10654ef')
+    },
+    {
+      user: new ObjectId('65c4277297e3d77261b9c8d6'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:10.537Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56402a9df1007b1065a7c')
+    },
+    {
+      user: new ObjectId('65c42646d09ad9080c2d4fab'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:13.044Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56405a9df1007b1065bac')
+    },
+    {
+      user: new ObjectId('65c4265c46dfe23919772efe'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:13.050Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56405a9df1007b1065bae')
+    },
+    {
+      user: new ObjectId('66b5628aa9df1007b106295e'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:20.748Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5640ca9df1007b1066009')
+    },
+    {
+      user: new ObjectId('6543e4ed9d5ed7e3bc476723'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:23.666Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5640fa9df1007b10663bc')
+    },
+    {
+      user: new ObjectId('65c4271dcf5f6762f72098dc'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:26.520Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56412a9df1007b10664bf')
+    },
+    {
+      user: new ObjectId('65c42684d09ad9080c2d5041'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:26.716Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56412a9df1007b10664c1')
+    },
+    {
+      user: new ObjectId('663431e83ac3c6955a5a5690'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:27.010Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56413a9df1007b1066545')
+    },
+    {
+      user: new ObjectId('65c426945283db7b18dce9e1'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:29.744Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56416a9df1007b1066938')
+    },
+    {
+      user: new ObjectId('66b55fffa9df1007b1061de7'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:30.836Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56417a9df1007b1066be3')
+    },
+    {
+      user: new ObjectId('66b55ea5a9df1007b1061cfb'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:41.251Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56421a9df1007b1067370')
+    },
+    {
+      user: new ObjectId('6634318b3ac3c6955a5a362c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:41.935Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56422a9df1007b10673fe')
+    },
+    {
+      user: new ObjectId('663431f73ac3c6955a5a5b71'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:44.466Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56424a9df1007b106767d')
+    },
+    {
+      user: new ObjectId('65c42722cf5f6762f720990b'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:34:55.278Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5642fa9df1007b1067f7c')
+    },
+    {
+      user: new ObjectId('65c42881a607d0127f4e5232'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:00.029Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56434a9df1007b1068259')
+    },
+    {
+      user: new ObjectId('663433513ac3c6955a5ac73d'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:07.338Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5643ba9df1007b106853d')
+    },
+    {
+      user: new ObjectId('65c4283997e3d77261b9d24c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:09.217Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5643da9df1007b1068621')
+    },
+    {
+      user: new ObjectId('65c425da55182d9461218054'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:16.538Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56444a9df1007b106891a')
+    },
+    {
+      user: new ObjectId('65c426e0cf5f6762f72096d5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:26.614Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5644ea9df1007b1068f71')
+    },
+    {
+      user: new ObjectId('65c426e0cf5f6762f72096d5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:26.635Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5644ea9df1007b1068f73')
+    },
+    {
+      user: new ObjectId('663433193ac3c6955a5abae5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:28.240Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56450a9df1007b1069199')
+    },
+    {
+      user: new ObjectId('65c4284e5283db7b18dcf9d3'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:30.062Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56452a9df1007b1069327')
+    },
+    {
+      user: new ObjectId('65b2fe9cdd4e1065c59ff80c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:30.387Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56452a9df1007b10693cb')
+    },
+    {
+      user: new ObjectId('65c426545283db7b18dce956'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:37.642Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56459a9df1007b1069ada')
+    },
+    {
+      user: new ObjectId('65c42610d09ad9080c2d4f4d'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:39.204Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5645ba9df1007b1069cce')
+    },
+    {
+      user: new ObjectId('65c426a6cf5f6762f72095a5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:35:54.637Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5646aa9df1007b106a2c5')
+    },
+    {
+      user: new ObjectId('66b56353a9df1007b1062b5c'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:00.828Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56471a9df1007b106a518')
+    },
+    {
+      user: new ObjectId('663434923ac3c6955a5aeefa'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:04.794Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56475a9df1007b106a671')
+    },
+    {
+      user: new ObjectId('66b5645ca9df1007b1069d78'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:13.840Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5647ea9df1007b106ab8f')
+    },
+    {
+      user: new ObjectId('66b5606ea9df1007b1061eb0'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:27.636Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5648ba9df1007b106b16d')
+    },
+    {
+      user: new ObjectId('6634329f3ac3c6955a5a94a4'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:29.653Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5648da9df1007b106b32d')
+    },
+    {
+      user: new ObjectId('663432d63ac3c6955a5aa535'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:32.314Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56490a9df1007b106b4f5')
+    },
+    {
+      user: new ObjectId('65c42862d5e0b3d303f62042'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:39.740Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56497a9df1007b106bc6c')
+    },
+    {
+      user: new ObjectId('65c4281546dfe239197738cf'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:36:43.042Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b5649ba9df1007b106bfae')
+    },
+    {
+      user: new ObjectId('66b56464a9df1007b106a0c5'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:04.941Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564b1a9df1007b106ce02')
+    },
+    {
+      user: new ObjectId('65c42683d09ad9080c2d503e'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:05.942Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564b3a9df1007b106cec5')
+    },
+    {
+      user: new ObjectId('66b56225a9df1007b10628a6'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:38.393Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564d2a9df1007b106e2ed')
+    },
+    {
+      user: new ObjectId('66b564c2a9df1007b106d705'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:38.494Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564d2a9df1007b106e2ef')
+    },
+    {
+      user: new ObjectId('6634324c3ac3c6955a5a7474'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:40.766Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564d5a9df1007b106e596')
+    },
+    {
+      user: new ObjectId('66b5646aa9df1007b106a219'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:37:50.840Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564dfa9df1007b106f29e')
+    },
+    {
+      user: new ObjectId('65b2fe7cac3b1d7bbba5245b'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:38:02.222Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564eaa9df1007b106f99f')
+    },
+    {
+      user: new ObjectId('65b2fe7cac3b1d7bbba5245b'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:38:02.223Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564eaa9df1007b106f9a1')
+    },
+    {
+      user: new ObjectId('65a207a8d35db65a1bfaf912'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:38:23.387Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b564ffa9df1007b1070320')
+    },
+    {
+      user: new ObjectId('65c425b655182d9461218041'),
+      absen: true,
+      kode: '-',
+      keterangan: null,
+      waktuAbsen: 2024-08-09T00:39:44.303Z,
+      koordinat: [-7.482044510981448, 110.22200388577714],
+      _id: new ObjectId('66b56550a9df1007b1072bd4')
+    },
+  ],
+  __v: 0
+}

@@ -28,6 +28,9 @@ async function pushTicket(absenceId, data) {
 
 route.post('/tidakHadir/:id', async (req, res) => {
     try {
+        if (!req.body.user) {
+            res.status(404).json({msg: 'Anda siapa?'})
+        }
         const data = {
             user: req.body.user,
             absen: false,
@@ -49,6 +52,9 @@ route.post('/tidakHadir/:id', async (req, res) => {
 
 route.post('/hadir/:id', async (req, res) => {
     try {
+        if (!req.body.user) {
+            res.status(404).json({msg: 'Anda siapa?'})
+        }
         const data = {
             user: req.body.user,
             absen: true,

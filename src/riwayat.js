@@ -4,7 +4,7 @@ const route = express.Router()
 
 route.get('/all', async (req, res) => {
     try {
-        const riwayats = await Riwayat.find({})
+        const riwayats = await Riwayat.find({}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
         res.json({riwayats})
     } catch (error) {
         console.log(error)
@@ -14,7 +14,7 @@ route.get('/all', async (req, res) => {
 
 route.get('/:userId', async (req, res) => {
     try {
-        const riwayats = await Riwayat.find({})
+        const riwayats = await Riwayat.find({}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
         const mappingRiwayat = riwayats.map(riwayat => {
             const user = riwayat.tickets.find(user => user._id.equals(req.params.userId))
             return {title: riwayat.title, absen: user?.absen, date: user?.waktuAbsen, _id: riwayat?._id, koordinat: user?.koordinat}
@@ -31,7 +31,7 @@ route.delete('/:riwayatId', async (req, res) => {
     try {
         const data = await Riwayat.findByIdAndDelete(req.params.riwayatId)
         if (data) {
-            const riwayats = await Riwayat.find({})
+            const riwayats = await Riwayat.find({}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
             return res.json({riwayats, msg: 'Berhasil menghapus riwayat'})
         }
         res.status(404).json({msg: 'Riwayat gagal dihapus'})
