@@ -1,7 +1,6 @@
 import express from 'express'
 import Riwayat from './schema/Riwayat.js'
 import Absensi from './schema/Absensi.js'
-import { getUserStatus } from './utils.js'
 const route = express.Router()
 import mongoose from 'mongoose'
 
