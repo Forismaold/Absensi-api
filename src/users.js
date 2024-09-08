@@ -3,7 +3,7 @@ import User from './schema/User.js'
 const route = express.Router()
 
 route.get('/all', async (req, res) => {
-    const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen')
+    const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran')
     res.json(users)
 })
 
