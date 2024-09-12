@@ -26,6 +26,38 @@ route.get('/length', async (req, res) => {
     }
 })
 
+route.put('/op/:userid', async (req, res) => {
+    try {
+        await User.findById(req.params.userid).then((user) => {
+            if (!user.peran.includes('admin')) {
+                user.peran.push('admin');  // Add 'admin' if it's not already there
+                user.save();  // Save the updated user
+                res.status(200).json({ user, msg: 'User is now admin' });
+            } else {
+                res.status(400).json({ msg: 'User is already admin' });
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' });
+    }
+});
+
+route.put('/deop/:userid', async (req, res) => {
+    try {
+        await User.findById(req.params.userid).then((user) => {
+            if (user.peran.includes('admin')) {
+                user.peran = user.peran.filter(role => role !== 'admin');  // Remove 'admin'
+                user.save();  // Save the updated user
+                res.status(200).json({ user, msg: 'Admin privileges removed' });
+            } else {
+                res.status(400).json({ msg: 'User is not an admin' });
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' });
+    }
+});
+
 
 route.post('/daftar', async (req, res) => {
     const dataUser = req.body
