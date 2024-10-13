@@ -18,7 +18,7 @@ route.get('/', async (req, res) => {
 })
 route.get('/short', async (req, res) => {
     try {
-        const data = await Absensi.find().select('title note date openedBy status')
+        const data = await Absensi.find().select('title note date openedBy status allowedGrades')
         if (data) {
             res.status(200).json({data})
         } else {

@@ -18,6 +18,11 @@ const riwayatSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    allowedGrades: {
+        type: [String],
+        default: ['X.E', 'XI.F', 'XII.F'],
+        enum: ['X.E', 'XI.F', 'XII.F']
+    },
     coordinates: {
         first: {
             type: [Number],
