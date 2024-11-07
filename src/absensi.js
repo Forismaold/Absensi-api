@@ -124,6 +124,16 @@ route.get('/detail/:id', async (req, res) => {
     }
 })
 
+route.get('/users/:id', async (req, res) => {
+    try {
+        const absensi = await Absensi.findById(req.params.id).select('tickets').populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
+        res.status(200).json(absensi?.tickets.map(x => x.user) || [])
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({msg: 'Internal server error'})   
+    }
+})
+
 route.get('/status/:id', async (req, res) => {
     try {
         const absensi = await Absensi.findById(req.params.id)
