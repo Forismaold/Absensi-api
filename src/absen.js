@@ -93,8 +93,8 @@ route.post('/hadir/:id', async (req, res) => {
 // Admin control
 route.put('/force/hadir/:id', async (req, res) => {
     const absensiId = req.params.id;
-    const { koordinat, userId } = req.body;
-    console.log('force hadir detected', absensiId, koordinat, userId);
+    const { koordinat, user } = req.body;
+    console.log('force hadir detected', absensiId, koordinat, user);
 
     const data = {
         user: req.body.user,
