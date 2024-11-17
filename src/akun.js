@@ -132,6 +132,23 @@ route.post('/login/google', async (req, res) => {
 
     res.json({user: encryptObject(user), msg: 'ok'})
 })
+route.post('/register/google', async (req, res) => {
+    const dataUser = req.body
+    try {
+        const exitingUser = await User.findOne({nama: req.body.nama})
+        if (exitingUser) return res.status(409).json({ msg: `Pengguna dengan nama "${dataUser.nama}" sudah ada` })
+
+        const user = new User(dataUser)
+
+        await user.save().then(data => {
+            res.status(201).json({ user: encryptObject(data), msg: 'User berhasil daftar' })
+        }).catch(err => {
+            throw new Error(err)
+        })
+    } catch (error) {
+        res.status(500).json({ msg: 'Internal server error' })
+    }
+})
 
 route.post('/bind/google', async (req, res) => {
     const {picture, email} = jwtDecode(req.body.credential)

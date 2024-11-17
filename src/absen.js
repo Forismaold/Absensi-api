@@ -1,11 +1,17 @@
 import express from 'express'
 import Absensi from './schema/Absensi.js'
+import mongoose from 'mongoose'
 
 const route = express.Router()
 
 async function pushTicket(absenceId, data) {
+    console.log('push ticket', absenceId, data)
     let absensi
     let userExist = await Absensi.findOne({_id: absenceId, status: true, "tickets.user": data.user })
+    console.log('Valid absenceId:', mongoose.Types.ObjectId.isValid(absenceId));
+    console.log('Valid data.user:', mongoose.Types.ObjectId.isValid(data.user));
+    const absence = await Absensi.findOne({ _id: absenceId, status: true });
+    console.log('Absence document:', absence);
     if (userExist) {
         absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
             $set: {
