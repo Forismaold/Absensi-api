@@ -28,11 +28,12 @@ route.get('/length', async (req, res) => {
 
 route.put('/op/:userid', async (req, res) => {
     try {
-        await User.findById(req.params.userid).then((user) => {
+        await User.findById(req.params.userid).then(async (user) => {
             if (!user.peran.includes('admin')) {
                 user.peran.push('admin');  // Add 'admin' if it's not already there
                 user.save();  // Save the updated user
-                res.status(200).json({ user, msg: 'User is now admin' });
+                const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran')
+                res.status(200).json({ user, msg: 'User is now admin', users });
             } else {
                 res.status(400).json({ msg: 'User is already admin' });
             }
@@ -44,11 +45,12 @@ route.put('/op/:userid', async (req, res) => {
 
 route.put('/deop/:userid', async (req, res) => {
     try {
-        await User.findById(req.params.userid).then((user) => {
+        await User.findById(req.params.userid).then(async (user) => {
             if (user.peran.includes('admin')) {
                 user.peran = user.peran.filter(role => role !== 'admin');  // Remove 'admin'
                 user.save();  // Save the updated user
-                res.status(200).json({ user, msg: 'Admin privileges removed' });
+                const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran')
+                res.status(200).json({ user, msg: 'Admin privileges removed', users });
             } else {
                 res.status(400).json({ msg: 'User is not an admin' });
             }
