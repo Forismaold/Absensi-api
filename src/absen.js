@@ -103,6 +103,8 @@ route.put('/force/hadir/:id', async (req, res) => {
     console.log('force hadir detected', absensiId, koordinat, user);
     // console.log('datareceive', req.body);
 
+    if (!data.user) return res.status(404).json({msg: 'User tidak ditemukan', success: false})
+    if (!data.koordinat) return res.status(404).json({msg: 'koordinat tidak ditentukan', success: false})
     
     const data = {
         user: req?.body?.user || null,
@@ -110,9 +112,6 @@ route.put('/force/hadir/:id', async (req, res) => {
         waktuAbsen: new Date(), 
         koordinat: koordinat || null
     }
-
-    if (!data.user) return res.status(404).json({msg: 'User tidak ditemukan', success: false})
-    if (!data.koordinat) return res.status(404).json({msg: 'koordinat tidak ditentukan', success: false})
 
     const absensi = await pushTicket(req.params.id, data)
 
