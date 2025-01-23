@@ -108,7 +108,7 @@ route.put('/force/hadir/:id', async (req, res) => {
         user: req?.body?.user || null,
         absen: true,
         waktuAbsen: new Date(), 
-        koordinat: req?.body?.userCoordinate || null
+        koordinat: koordinat || null
     }
 
     if (!data.user) return res.status(404).json({msg: 'User tidak ditemukan', success: false})
