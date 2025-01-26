@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
   nomorAbsen: {
     type: Number,
     required: true,
-    default: '40'
+    default: 40
   },
   kelas: {
     type: String,

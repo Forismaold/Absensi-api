@@ -1,36 +1,57 @@
 import express from 'express'
 import Absensi from './schema/Absensi.js'
 import mongoose from 'mongoose'
+import User from './schema/User.js'
 
 const route = express.Router()
 
 async function pushTicket(absenceId, data) {
-    console.log('push ticket', absenceId, data)
-    let absensi
-    let userExist = await Absensi.findOne({_id: absenceId, status: true, "tickets.user": data.user })
-    console.log('Valid absenceId:', mongoose.Types.ObjectId.isValid(absenceId));
-    console.log('Valid data.user:', mongoose.Types.ObjectId.isValid(data.user));
-    const absence = await Absensi.findOne({ _id: absenceId, status: true });
-    console.log('Absence document:', absence);
-    if (userExist) {
-        absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
-            $set: {
-                'tickets.$[user].absen': data?.absen,
-                'tickets.$[user].keterangan': data?.keterangan,
-                'tickets.$[user].waktuAbsen': data?.waktuAbsen,
-                'tickets.$[user].kode': data?.kode,
-                'tickets.$[user].koordinat': data?.koordinat,
-            },
-        }, {new: true, arrayFilters: [{'tickets.user': data.user}]}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
-    } else {
-        absensi = await Absensi.findOneAndUpdate({_id: absenceId, status: true}, {
-            $push: {
-                tickets: data
-            },
-        }, {new: true}).populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
+    let absensi;
+    try {
+        // Check if the user already exists in the tickets array
+        let userExist = await Absensi.findOne({
+            _id: absenceId,
+            status: true,
+            "tickets.user": data.user,
+        });
+
+        if (userExist) {
+            // Update existing ticket with arrayFilters
+            absensi = await Absensi.findOneAndUpdate(
+                { _id: absenceId, status: true },
+                {
+                    $set: {
+                        "tickets.$[ticket].absen": data?.absen,
+                        "tickets.$[ticket].keterangan": data?.keterangan,
+                        "tickets.$[ticket].waktuAbsen": data?.waktuAbsen,
+                        "tickets.$[ticket].kode": data?.kode,
+                        "tickets.$[ticket].koordinat": data?.koordinat,
+                    },
+                },
+                {
+                    new: true,
+                    arrayFilters: [{ "ticket.user": data.user }],
+                }
+            ).populate("tickets.user", "nama kelas nomorKelas nomorAbsen");
+        } else {
+            // Push a new ticket into the tickets array
+            absensi = await Absensi.findOneAndUpdate(
+                { _id: absenceId, status: true },
+                {
+                    $push: {
+                        tickets: data,
+                    },
+                },
+                { new: true }
+            ).populate("tickets.user", "nama kelas nomorKelas nomorAbsen");
+        }
+    } catch (error) {
+        console.error(error);
     }
-    return absensi
+
+    return absensi || null;
 }
+
 
 route.post('/tidakHadir/:id', async (req, res) => {
     try {
