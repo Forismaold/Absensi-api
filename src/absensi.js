@@ -80,9 +80,10 @@ route.post('/', async (req, res) => {
         await absensi.save()
         console.log(absensi)
 
-        const list = await Absensi.find().populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
+        // const list = await Absensi.find().populate('tickets.user', 'nama kelas nomorKelas nomorAbsen')
 
-        res.status(200).json({ createdAbsence: absensi, list })
+        // res.status(200).json({ createdAbsence: absensi, list })
+        res.status(200).json({ createdAbsence: absensi })
     } catch (error) {
         res.status(500).json({ msg: 'Internal server error', error: error.message })
     }
