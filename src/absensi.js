@@ -74,7 +74,7 @@ route.get('/:id', async (req, res) => {
     }
 })
 
-route.post('/', async (req, res) => {
+route.post('/', async (req, res) => { // faster
     try {
         const absensi = new Absensi(req.body)
         await absensi.save()
