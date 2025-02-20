@@ -18,9 +18,15 @@ route.get('/all/analyze', async (req, res) => {
 })
 
 route.get('/class/:class/:classNumber', async (req, res) => {
-    console.log(req.params)
-    const users = await User.find({kelas: req.params.class, nomorKelas: req.params.classNumber}).select('nama _id NIS kelas nomorKelas nomorAbsen')
-    res.json(users)
+    try {
+        console.log(req.params)
+        const users = await User.find({kelas: req.params.class, nomorKelas: req.params.classNumber}).select('nama _id NIS kelas nomorKelas nomorAbsen')
+        res.json(users)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 })
 
 route.get('/space', async (req, res) => {

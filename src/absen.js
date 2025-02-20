@@ -172,5 +172,25 @@ route.put('/force/hadir/:id', async (req, res) => {
     // }
 })
 
+route.put('/delete/hadir/:id', async (req, res) => {
+    const absensiId = req.params.id;
+    const { user } = req.body;
+    console.log('delete hadir detected', absensiId, koordinat, user);
+
+    if (!user) return res.status(404).json({msg: 'User tidak ditemukan', success: false})
+
+    const result = await Absensi.findOneAndUpdate(
+        { _id: documentId }, // Match the document
+        { $pull: { tickets: { user: user } } }, // Remove the ticket where user matches
+        {new: true}
+    );
+
+    if (result) {
+        res.json({data: result, msg: 'Berhasil dihapus absen', success: true})
+    } else {
+        res.status(404).json({msg: 'User atau absensi tidak ditemukan', success: false})
+    }
+})
+
 
 export default route
