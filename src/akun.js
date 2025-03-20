@@ -83,11 +83,13 @@ route.post('/daftar', async (req, res) => {
 })
 
 route.put('/:id', async (req, res) => {
-    const dataUser = req.body
+    const dataUser = req.body;
+    const { alsoreturnallusers } = req.query;
+    
     try {
-        const exitingUser = await User.findOne({nama: req.body.nama})
+        const exitingUser = await User.findOne({ nama: req.body.nama });
         if (exitingUser && exitingUser._id.toString() !== req.params.id) {
-            return res.status(409).json({ msg: `Pengguna dengan nama "${dataUser.nama}" sudah ada` })
+            return res.status(409).json({ msg: `Pengguna dengan nama "${dataUser.nama}" sudah ada` });
         }
 
         const user = await User.findByIdAndUpdate(
@@ -95,11 +97,19 @@ route.put('/:id', async (req, res) => {
             { $set: dataUser },
             { new: true }
         );
-        res.status(201).json({ user: encryptObject(user), msg: 'User berhasil diperbarui!' })
+        
+        let users = [];
+        if (alsoreturnallusers === 'true') {
+            users = await User.find();
+        }
+
+        res.status(201).json({ user: encryptObject(user), users, msg: 'User berhasil diperbarui!' });
     } catch (error) {
-        res.status(500).json({ msg: 'Internal server error' })
+        console.log(error);
+        res.status(500).json({ msg: 'Internal server error' });
     }
-})
+});
+
 
 route.post('/login/form', async (req, res) => {
     const { nama, password } = req.body;

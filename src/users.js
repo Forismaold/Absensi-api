@@ -1,5 +1,6 @@
 import express from 'express'
 import User from './schema/User.js'
+import { maskEmail } from './utils.js'
 const route = express.Router()
 
 route.get('/takeall', async (req, res) => {
@@ -10,6 +11,13 @@ route.get('/takeall', async (req, res) => {
 route.get('/all', async (req, res) => {
     const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran')
     res.json(users)
+})
+route.get('/adminGetAll', async (req, res) => {
+    const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran email')
+    const maskedUsers = users.map((user) => {
+        return ({...user, email: maskEmail(user.email)})
+    })
+    res.json(maskedUsers)
 })
 
 route.get('/all/analyze', async (req, res) => {

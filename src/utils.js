@@ -18,3 +18,13 @@ export function dencryptObject(encryptedmsg) {
 export const getUserStatus = (user = {}) => {
     return { kode: user.kode, keterangan: user.keterangan, waktuAbsen: user.waktuAbsen, absen: user.absen, koordinat: user?.koordinat || [0, 0] };
 }
+
+export const maskEmail = (email) => {
+    if (!email.includes('@')) return email; // Return as is if invalid
+
+    const [localPart, domain] = email.split('@');
+    if (localPart.length <= 2) return email; // No need to mask if too short
+
+    const maskedLocal = `${localPart[0]}${'*'.repeat(localPart.length - 2)}${localPart[localPart.length - 1]}`;
+    return `${maskedLocal}@${domain}`;
+};

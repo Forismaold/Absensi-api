@@ -1,6 +1,6 @@
 {
-  "name": "forisma-backend",
-  "version": "1.0.0",
+  "name": "forisma-dev-backend",
+  "version": "1.8.0",
   "description": "Restful untuk absensiswa",
   "type": "module",
   "main": "index.js",
