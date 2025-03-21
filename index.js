@@ -28,6 +28,9 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
     res.json({hello: 'world'})
 })
+app.get('/nodeEnv', (req, res) => {
+    res.json({hello: nodeEnv})
+})
 
 app.use('/akun', akun)
 
