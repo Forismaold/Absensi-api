@@ -3,6 +3,7 @@ import { jwtDecode } from 'jwt-decode';
 import User from './schema/User.js';
 import bcrypt from 'bcrypt'
 import { encryptObject } from './utils.js';
+import { maskEmail } from './utils.js';
 
 const route = express.Router()
 
