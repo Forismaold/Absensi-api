@@ -75,6 +75,12 @@ const userSchema = new mongoose.Schema({
   //   default: [0, 0],
   // },
   lainnya: Object
+}, {
+  timestamps: {
+    currentTime: () => +new Date(),
+    createdAt: 'createdAt',
+    updatedAt: 'lastUpdated'
+  }
 })
 
 userSchema.virtual('kelasLengkap').get(function() {

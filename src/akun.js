@@ -99,11 +99,15 @@ route.put('/:id', async (req, res) => {
         );
         
         let users = [];
+        let maskedUsers = []
         if (alsoreturnallusers === 'true') {
-            users = await User.find();
+            users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran email').lean()
+            maskedUsers = users.map((user) => {
+                return ({...user, email: maskEmail(user.email)})
+            })
         }
 
-        res.status(201).json({ user: encryptObject(user), users, msg: 'User berhasil diperbarui!' });
+        res.status(201).json({ user: encryptObject(user), maskedUsers, msg: 'User berhasil diperbarui!' });
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: 'Internal server error' });

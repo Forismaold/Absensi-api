@@ -13,7 +13,7 @@ route.get('/all', async (req, res) => {
     res.json(users)
 })
 route.get('/adminGetAll', async (req, res) => {
-    const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran email')
+    const users = await User.find({}).select('nama _id NIS kelas nomorKelas nomorAbsen peran email').lean()
     const maskedUsers = users.map((user) => {
         return ({...user, email: maskEmail(user.email)})
     })
